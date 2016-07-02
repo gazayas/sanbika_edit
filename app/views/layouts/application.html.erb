@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>賛美歌</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+
+<nav id="nav_bar">
+  <%= link_to "賛美歌", {controller: 'users', action: 'index'} %>
+  <% if current_user %>
+    <%= link_to "#{current_user.name}さん", current_user %> | <%= link_to "ログアウト", '/logout' %>
+  <% else %>
+    <%= link_to 'ログイン', '/login' %> | <%= link_to 'アカウント登録', '/signup' %>
+  <% end %>
+  <%= link_to "ホーム", {controller: 'users', action: 'index'} %>
+</nav>
+
+
+<div id="main_wrapper">
+  <% flash.each do |key, value| %>
+    <%= content_tag(:div, value, class: "#{key}") %>
+  <% end %>
+
+  <%= yield %>
+</div>
+
+
+
+
+</body>
+</html>

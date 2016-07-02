@@ -1,0 +1,52 @@
+<script>
+// *で囲まれたコードの<span></span>化
+// 次の関数に対して、 「window.onload = function Replace() { ... }」を使うのではなくて、
+// 下にある jquery の方を使う
+// turbolinksのためにそれをする
+// http://stackoverflow.com/questions/35245735/rails-turbolinks-issues-with-window-onload
+function Replace () {
+
+  var body = document.getElementById("body");
+  var re = /\*/g;
+  var re2 = /\*/; //よく分からないけど、これで var stars の定義をしようとしたら、４個しか帰ってきてなかった
+  var stars = body.innerHTML.match(re);
+  // console.log(stars);
+  // console.log(stars.length);
+  for (var i = 1; i <= stars.length; i++) {
+    var true_star_index = i;
+    console.log(true_star_index);
+    if (true_star_index % 2 == 1) {
+    body.innerHTML = body.innerHTML.replace(re2, "<span class=\"chord\">");
+    console.log(body.innerHTML);
+  } else if(true_star_index % 2 == 0){
+      body.innerHTML = body.innerHTML.replace(re2, "</span>");
+      console.log(body.innerHTML);
+    }
+  }
+  var chords = document.getElementsByClassName("chord");
+  for (var i = 0; i < chords.length; i++) {
+    chords[i].setAttribute("name", chords[i].innerHTML);
+  }
+}
+
+$(document).ready(Replace);
+$(document).on('page:load', Replace);
+$(document).on('turbolinks:load', Replace);
+
+</script>
+
+<div id="song_wrapper">
+  <h1 id="song_title"><%= @song.title %></h1>
+  <!-- <span id="chord_holder"></span> -->
+  <span id="original_key"><%= @song.key %></span><br/> <!-- visibility: hidden -->
+  <% notes = Notes() %>
+  <%= select_tag(:key_select,  options_for_select(notes[0], @song.key), :onchange => "KeyChange();", :id => 'key_select') %>
+  <div id="body"><%= simple_format(@song.body) %></div>
+  チャートの作成：<%= link_to @user.name + "さん", @user, :id => 'user_link' %>
+  <p><%= @song.video %></p>
+
+  <% if current_user == @user %>
+    <%= link_to "歌の編集", edit_user_song_path(@user, @song) %><br/>
+    <%= link_to "歌の削除", [@user, @song], method: :delete, data: { confirm: "本当に削除しますか？" } %>
+  <% end %>
+</div>

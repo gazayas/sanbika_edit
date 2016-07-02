@@ -1,0 +1,27 @@
+<% if current_user != @user %>
+  こちらは<%= @user.name %>さんのページです
+<% else %>
+  ホームへようこそ
+<% end %>
+<br/><br/>
+
+<% if current_user == @user %>
+  新しい歌の<%= link_to "作成", new_user_song_path(@user) %>
+<% end %>
+
+<ul>
+  <% @songs.each do |song| %>
+    <!-- songsのindexもあっても大丈夫だけど自分のプロファイルで見えるようにしたい -->
+    <!-- ただ、ページネーションを使ったらajaxを使わないとダメだと思う -->
+    <!-- gem kaminari でページネーション -->
+    <li>
+      <%= link_to song.title, url_for([@user, song]) %>
+    </li>
+  <% end %>
+</ul>
+
+<% if current_user == @user %>
+  <br/><br/>
+  <%= link_to "編集", edit_user_path(current_user) %>
+  <%= link_to "ユーザー削除", @user, method: :delete, data: { confirm: "本当に削除しますか？" } %>
+<% end %>

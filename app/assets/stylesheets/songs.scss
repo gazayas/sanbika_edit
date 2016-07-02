@@ -1,0 +1,80 @@
+// Place all the styles related to the songs controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* float を使って、歌詞とchordの塊を右に寄せること */
+
+
+/* show */
+
+body { /* application.css にすること */
+  margin: 0px auto;
+}
+
+#song_wrapper {
+  text-align: center;
+  margin: 0px auto;
+  width: 75%;
+}
+
+#original_key {
+  visibility: hidden;
+}
+
+#song_title {
+  margin-top: 100px;
+  background-color: #000;
+  color: #FFF;
+
+  border: gray 2px solid;
+  padding: 10px;
+}
+
+#key_select {
+  
+  -webkit-appearance:none;
+  -moz-appearance:none;
+  appearance:none;
+
+  width: 10%;
+  border: 2px gray solid;
+  padding: 10px 20px;
+
+  background-color: #000;
+  color: #FFF;
+  font-size: 20px;
+
+  -webkit-transition: all .5s ease-in-out;
+  -moz-transition: all .5s ease-in-out;
+  -o-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
+
+
+  &:hover {
+    background-color: #52C4CC;
+    color: #FFF;
+  }
+
+}
+
+#body {
+  text-align: left;
+  white-space: pre;
+  line-height: 0.75em; /* これなしで歌詞とコードとの間が大きすぎる */
+  padding: 10px;
+
+  margin: 40px 0px;
+  border: 2px gray solid;
+
+}
+
+/* form */
+#song_form_wrapper {
+  width: 75%;
+  margin: 0px auto;
+}
+
+textarea {
+  width: 900px;
+  height: 300px;
+}
