@@ -28,7 +28,7 @@ class UsersController < ApplicationController
       # flash[:danger] = @user.errors
       message = ""
       @user.errors.full_messages.each do |error|
-        message += "(" + error + ")"
+        message += error + ".  "
       end
       flash[:danger] = message
       redirect_to '/signup'
@@ -43,7 +43,7 @@ class UsersController < ApplicationController
     @users = User.all
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
-      flash[:success] = "Cool"
+      flash[:success] = "ユーザーを更新しました"
       redirect_to @user
     else
       redirect_to @users

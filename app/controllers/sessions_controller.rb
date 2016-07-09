@@ -10,11 +10,11 @@ class SessionsController < ApplicationController
         session[:user_id] = user.id
         redirect_to user
       elsif user.activated == false
-        flash[:notice] = "Your account is not activated yet"
+        flash[:notice] = "アカウントは登録されていますが、まだアクティベートされていません。メールをご確認ください。"
         redirect_to '/login'
       end
     else
-      flash[:notice] = "Nope"
+      flash[:notice] = "ログインできませんでした"
       redirect_to '/login'
     end
   end

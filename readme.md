@@ -1,5 +1,6 @@
 #賛美歌
 
+ユーザーがメールを送らずに自由に自分のパスワードを編集できるからその部分を削除すること
 
 ###これからやらないときえないこと
 1. UserやSongのモデルの全ての必要の属性の定義
@@ -10,10 +11,10 @@
 
 ###モデルの方
 songモデルに:<br/>
-1. song_yomikata (bool) # 読み方<br/>
+1. song_yomikata (string) # 読み方<br/>
 2. artist (string) # 作曲者<br/>
 3. artist_yomikata (string)<br/>
-4. sheet_music (data) # 楽譜<br/>
+4. sheet_music (data) # 楽譜... これはいいかな。ウェブサイトをデプロイしてから<br/>
 
 Userモデルに:<br/>
 1. status:string (現在の気分のこと。バリデーションでツイッターと同じ文字数を限定すること)<br/>
