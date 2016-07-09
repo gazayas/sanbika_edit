@@ -4,12 +4,30 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
-    @songs = Song.all
+    # @songs = Song.all.order()
   end
 
   def show
     @user = User.find(params[:id])
     @songs = @user.songs.all
+    array = []
+    @songs.each do |song|
+      array << song.title_yomikata
+    end
+    array = array.sort
+    # flash[:notice] = array
+    length = @songs.length
+    
+    #これからのコード。これができたら完成。今はまだだけど
+    new_song_array = []
+    @songs.each do |song|
+      array.each do |yomikata|
+        if song.title_yomikata == yomikata
+          new_song_array << song
+        end
+      end
+    end
+    flash[:notice] = new_song_array
   end
 
   def new

@@ -28,9 +28,11 @@
     <br/>
 
     <% @songs.each do |song| %>
-      <!-- gem kaminari でページネーション -->
       <%= link_to song.title, url_for([@user, song]) %><br/>
     <% end %>
+
+    <!-- gem kaminari でページネーション -->
+    <br/>
   </div>
   
 
