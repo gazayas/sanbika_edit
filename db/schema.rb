@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160702225951) do
+ActiveRecord::Schema.define(version: 20160709085900) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20160702225951) do
     t.string   "remember_digest"
     t.string   "reset_digest"
     t.datetime "reset_sent_at"
+    t.string   "status"
   end
 
   add_foreign_key "songs", "users"

@@ -5,19 +5,19 @@
 	<div id="new_user_form">
   	<table>
   		<tr>
-  			<td>名前:</td>
+  			<td>ユーザー名</td>
   			<td><%= f.text_field :name %><td/>
   		</tr>
   		<tr>
-  			<td>メール:</td>
+  			<td>メール</td>
   			<td> <%= f.email_field :email %></td>
   		</tr>
   		<tr>
-	  		<td>パスワード:</td>
+	  		<td>パスワード</td>
   			<td><%= f.password_field :password %></td>
   		</tr>
    		<tr>
-	   		<td>パスワード確認:</td>
+	   		<td>パスワード確認</td>
    			<td><%= f.password_field :password_confirmation %></td>
    		</tr>
    		<tr>
@@ -26,4 +26,3 @@
   	</table>
   	</div>
 <% end %>
-

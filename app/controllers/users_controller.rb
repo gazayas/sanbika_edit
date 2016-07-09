@@ -43,10 +43,11 @@ class UsersController < ApplicationController
     @users = User.all
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
-      flash[:success] = "ユーザーを更新しました"
+      flash[:success] = "プロフィルを更新しました"
       redirect_to @user
     else
-      redirect_to @users
+      flash[:danger] = "今の気分を更新できませんでした。文字数が140を越えていないことを確認した上、もう一度ご投稿ください"
+      redirect_to @user
     end
   end
 
@@ -60,7 +61,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :status)
   end
 
 

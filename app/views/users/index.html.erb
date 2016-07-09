@@ -1,23 +1,3 @@
-<ul>
-  <% @users.each do |user| %>
-    <li><%= link_to user.name, user %></li>
-  <% end %>
-</ul>
-
-<ul>
-  <% @users.each do |user| %>
-    <% songs = user.songs.all %>
-    <%# すべての歌を <li> に入れる前に順番に入れることが大事 %>
-    <%# 新しい配列にpushしてから次のコードを行うこと %>
-    <% songs.each do |song| %>
-      <li><%= link_to song.title, [user, song] %></li>
-    <% end %>
-  <% end %>
-</ul>
-
-<ul>
-  <% @songs.each do |song| %>
-  <% user = User.find(song.user_id) %>
-  <li><%=user.name%></li>
-  <% end %>
-</ul>
+<% @users.each do |user| %>
+  <%= link_to user.name, user %> 今の気分：<%= user.status %><br/>
+<% end %>

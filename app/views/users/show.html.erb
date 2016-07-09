@@ -1,9 +1,14 @@
-<% if current_user != @user %>
-  こちらは<%= @user.name %>さんのページです
-<% else %>
-  ホームへようこそ
-<% end %>
+<div id="profile_wrapper">
+  <% if current_user == @user %>
+    <%= @user.name%>さん、お帰りなさい<br/>
+    <%= link_to "プロフィルの編集", edit_user_path(current_user) %>
+  <% else %>
+    <%= @user.name %>さんのページへようこそ
+  <% end %>
+
 <br/><br/>
+
+今の気分：　<%= @user.status %><br/><br/>
 
 <% if current_user == @user %>
   新しい歌の<%= link_to "作成", new_user_song_path(@user) %>
@@ -22,6 +27,7 @@
 
 <% if current_user == @user %>
   <br/><br/>
-  <%= link_to "編集", edit_user_path(current_user) %>
-  <%= link_to "ユーザー削除", @user, method: :delete, data: { confirm: "本当に削除しますか？" } %>
+  
+  <%= link_to "アカウントの削除", @user, method: :delete, data: { confirm: "本当に削除しますか？作った歌のチャートも一緒に削除されます。" } %>
 <% end %>
+</div>
