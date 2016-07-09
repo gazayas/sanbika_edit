@@ -2,19 +2,18 @@ class User < ActiveRecord::Base
 
   attr_accessor :remember_token, :activation_token, :reset_token
   before_create :create_activation_digest
-  #before_save :downcase_email
-
   has_secure_password
   has_many :songs, :dependent => :destroy
-  # アカウントが削除されると歌が削除されないように（？）
-  # optionができるようにすること
-  accepts_nested_attributes_for :songs, :allow_destroy => true # これは要る？適当に入れた
+  accepts_nested_attributes_for :songs, :allow_destroy => true # :allow_destroy の部分が要るかどうか分からん
+  # before_save :downcase_email これは Michael Hartl のチュートリアルにあった
 
-=begin
-  def downcase_email
-      self.email = email.downcase
-  end
-=end
+  # バリデーション
+  validates :name, presence: true, uniqueness: true, length: { minimum: 5, maximum: 30 }
+
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
+
+
 
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
@@ -31,7 +30,7 @@ class User < ActiveRecord::Base
     BCrypt::Password.new(digest).is_password?(token)
   end
 
-  # アカウントアクティベーションに関するメソッド
+  # アカウントをアクティベートする
   def activate
     update_attribute(:activated, true)
     update_attribute(:activated_at, Time.zone.now)
@@ -52,6 +51,7 @@ class User < ActiveRecord::Base
     UserMailer.password_reset(self).deliver_now
   end
 
+  # もし２時間が経ったらパスワードの更新ができません
   def password_reset_expired?
     reset_sent_at < 2.hours.ago
   end
@@ -59,12 +59,14 @@ class User < ActiveRecord::Base
   private
 
 =begin
+  Michael Hartl のチュートリアルにあったコードなんですか、
+  具体的になぜ使っていたか分からないからここで使っていません
   def downcase_email
     self.email = email.downcase
   end
 =end
 
-  def remember # このメソッドが要るかどうか分からない...
+  def remember # これは要らんかな。別にメールを覚える必要はないかな
     self.remeber_token = User.new_token
     update_attribute(:remember_digest, User.digest(remember_token))
   end

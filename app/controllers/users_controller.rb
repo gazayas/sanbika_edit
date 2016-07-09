@@ -20,12 +20,18 @@ class UsersController < ApplicationController
     if @user.save
       #UserMailer.account_activation(@user).deliver_now
       @user.send_activation_email
-      flash[:info] = "Please check your email to activate your account."
-      session[:user_id] = @user.id
+      flash[:info] = "アカウントをアクティベートするにはメールで送信されたリンクをクリックしてください"
+      # session[:user_id] = @user.id これをコメントアウトしたのは、ユーザーが最初にアカウントをアクティベートするためです
       # activated? が「偽」である限り、ログインできないようにした方がいいかな
       redirect_to '/'
     else
-      redirect_to '/login'
+      # flash[:danger] = @user.errors
+      message = ""
+      @user.errors.full_messages.each do |error|
+        message += "(" + error + ")"
+      end
+      flash[:danger] = message
+      redirect_to '/signup'
     end
   end
 
