@@ -9,15 +9,15 @@
 
 ###モデルの方
 songモデルに:
-1. song_yomikata (bool) # 読み方
-2. artist (string) # 作曲者
-3. artist_yomikata (string)
-4. sheet_music (data) # 楽譜
+1. song_yomikata (bool) # 読み方<br/>
+2. artist (string) # 作曲者<br/>
+3. artist_yomikata (string)<br/>
+4. sheet_music (data) # 楽譜<br/>
 
 Userモデルに:
-1. feeling:string (バリデーションでツイッターと同じ文字数を限定すること)
-2. church:string
-3. bio:text
+1. feeling:string (バリデーションでツイッターと同じ文字数を限定すること)<br/>
+2. church:string<br/>
+3. bio:text<br/>
 
 読み方があると、indexで順番に見せることができる
 歌のshowでは実際に見せない（多分「読み方を見せます？」というのをcheckboxで聞く。trueかfalse）
