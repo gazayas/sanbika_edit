@@ -8,13 +8,13 @@
 4. Testを作ること
 
 ###モデルの方
-songモデルに:
+songモデルに:<br/>
 1. song_yomikata (bool) # 読み方<br/>
 2. artist (string) # 作曲者<br/>
 3. artist_yomikata (string)<br/>
 4. sheet_music (data) # 楽譜<br/>
 
-Userモデルに:
+Userモデルに:<br/>
 1. feeling:string (バリデーションでツイッターと同じ文字数を限定すること)<br/>
 2. church:string<br/>
 3. bio:text<br/>
