@@ -27,7 +27,7 @@ http://kiyotakakubo.hatenablog.com/entry/20091027/1256660387
 フォーム（new と edit アクションで）:
 email_field を使った方がいいかな（新しいレコードをcreateする時に）
 
-#user/index.html.erbに
+###user/index.html.erbに
 写真 ユーザー名 今の気分（この部分をtruncateする） 友達であるかどうか（チェックかプラス記号）
 このようにリストを作ること
 
