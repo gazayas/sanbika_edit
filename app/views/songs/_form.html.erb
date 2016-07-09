@@ -3,6 +3,7 @@
 <div id="song_form_wrapper">
 
 <% if current_user == @user %>
+
   <%= form_for([@user, @song]) do |f| %>
 
     <% if @song.key != nil %>
@@ -11,13 +12,53 @@
       <% selected_key = "C" %> <%# newの場合 %>
     <% end %>
 
-    タイトル: <%= f.text_field :title, :id => "song_title_form" %><br/>
-    キー: <%= f.select(:key, options_for_select(notes[0], :selected => selected_key)) %><br/>
-    <%= f.text_area :body %><br/>
-    動画のリンク: <%= f.text_field :video %><br/>
-    <%= f.submit "送信" %>
+    <table>
+      <tr>
+        <td>曲名</td>
+        <td><%= f.text_field :title, :id => "song_title_form" %></td>
+      </tr>
+      <tr>
+        <td>読み方</td>
+        <td><%= f.text_field :title_yomikata %></td>
+      </tr>
+      <tr>
+        <td>作曲者</td>
+        <td><%= f.text_field :artist %></td> 
+      </tr>
+      <tr>
+        <td>読み方</td>
+        <td><%= f.text_field :artist_yomikata %> </td>
+      </tr>
+      <tr>
+        <td>キー</td>
+        <td><%= f.select(:key, options_for_select(notes[0], :selected => selected_key)) %></td>
+      </tr>
+    </table>
+
+    <div id="explanation_wrapper">
+      <div id="explanation">
+        もし作曲者の名前と読み方を知らない場合は、半角で「N/A」をご入力ください。<br/>
+        すべての欄が埋まっていないとチャートが保存されないので、ご注意ください。<br/><br/>
+
+        チャートの作り方：
+        <ul>
+          <li>転調が上手く動くには、コードを「*」で囲みます。例：「*C*   *Am*   *G*  *F*」</li>
+          <li>実際に保存するとすべての「*」が消えますので、保存した上でご確認ください</li>
+          <li>また、キーが間違っているとコードの転調も上手く動作されないので、キーは間違いがないかご確認ください</li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="song_form_continuation">
+      <%= f.text_area :body, :id => "song_chart" %><br/>
+    
+      <!-- 動画のリンク: <%# f.text_field :video %><br/> -->
+    
+      <%= f.submit "保存" %>
+    </div>
 
   <% end %>
+
 <% end %>
 
 </div>

@@ -2,11 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-/* float を使って、歌詞とchordの塊を右に寄せること */
-
+h1 { /* これをした方がいいかな... */
+  margin-top: 100px;
+  text-align: center;
+}
 
 /* show */
-
 body { /* application.css にすること */
   margin: 0px auto;
 }
@@ -70,11 +71,68 @@ body { /* application.css にすること */
 
 /* form */
 #song_form_wrapper {
-  width: 75%;
+
+  width: 70%;
+  margin: 0px auto;
+  margin-bottom: 80px;
+  padding: 20px;
+  border: 2px gray solid;
+
+  table {
+    margin: 0px auto;
+    width: 60%;
+  }
+}
+
+#explanation_wrapper {
+  width: 70%;
   margin: 0px auto;
 }
 
-textarea {
-  width: 900px;
+#explanation {
+  padding: 20px 0px;
+}
+
+
+
+input[type=text] {
+  width: 80%;
+}
+
+#song_form_continuation {
+  text-align: center;
+  input[type=text] {
+    width: 30%;
+  }
+}
+
+#song_chart {
+  width: 800px;
   height: 300px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

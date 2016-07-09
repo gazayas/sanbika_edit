@@ -11,8 +11,6 @@ class SongsController < ApplicationController
   def new
     @user = User.find(params[:user_id])
     @song = @user.songs.build
-    # ここアクションには何もなくていいかな
-    # newページをgetするだけかな
   end
 
   def create
@@ -42,17 +40,18 @@ class SongsController < ApplicationController
   end
 
   def destroy
-    @user_id = Song.find(params[:id]).user_id #削除してから元のユーザーのページに戻るために
+    @user_id = Song.find(params[:id]).user_id # 削除してから元のユーザーのページに戻るために
     Song.find(params[:id]).destroy
-    flash[:success] = "歌は削除されました"
-    redirect_to user_path(@user_id) #前に定義した@user_idで元のユーザーに戻るため
+    flash[:success] = "賛美歌チャートは削除されました"
+    redirect_to user_path(@user_id) # 前に定義した@user_idで元のユーザーに戻るため
   end
 
   private
   def song_params
-    params.require(:song).permit(:title, :key, :body, :video, :user_id) #user_idって要る？
-    #videoの文字列はいnilでもいいのでそれをバリデーションに
-    #そしてshowページでnilかあるかに対して上手く対応すること
+    params.require(:song).permit(:title, :key, :body, :video, :user_id,
+      :title_yomikata, :artist, :artist_yomikata)
+    # videoの文字列はいnilでもいいのでそれをバリデーションに
+    # そしてshowページでnilかあるかに対して上手く対応すること
   end
 
 end
