@@ -26,21 +26,9 @@
     <% end %>
 
     <br/>
-
-    <%# リレーション・オブジェクトでは上手くsortされなかったのでRubyの方でやりました %>
-    <%# とにかくこれをヘルパーメソッドにしたいと思う、できたら %>
-    <% array = [] %>
-    <% @songs.each do |song| %>
-      <% array << song.title_yomikata %>
-    <% end %>
-    <% array = array.sort %>
-
-    <br/>
-    <% array.each do |title| %>
-      <%= title %><br/>
-    <% end %>
     <%# 読み方の中に空白を入れると配列が上手くソートされないので、songs/new.html.erbの中で空白をしないようにと %>
 
+    <% array = order_songs(@songs) %>
 
     <% i = 0 %>
     <% @songs.length.times do %>

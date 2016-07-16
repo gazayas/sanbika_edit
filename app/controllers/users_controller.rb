@@ -1,7 +1,5 @@
 class UsersController < ApplicationController
 
-
-
   def index
     @users = User.all
     # @songs = Song.all.order()

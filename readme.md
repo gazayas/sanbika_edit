@@ -1,6 +1,7 @@
 #賛美歌
 
-users_controller.rb の配列を上手くソートしてリストを返すこと...
+
+YAkvAVi3
 
 Song.rbのバリテーション
 

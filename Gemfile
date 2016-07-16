@@ -14,7 +14,9 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'unicorn'
 
 group :development, :test do
-  gem 'byebug'
+  gem 'pry-byebug'
+  # gem 'hirb'
+  # Hirb を Pry で使うには、.pryrc の設定を書く必要がある
 end
 
 group :development do
