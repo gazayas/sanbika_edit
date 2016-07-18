@@ -1,11 +1,12 @@
 function KeyChange () {
+
+  // 「b」か普通の「#」を書いたら「♭」や「♯」変換されるようにすること
   //これをsongs.coffeeに入れる？
 
   // 音符の定義
   var sharp_notes = ["A", "A♯", "B", "C", "C♯", "D", "D♯", "E", "F", "F♯", "G", "G♯"];
   var flat_notes = ["A", "B♭", "B", "C", "D♭", "D", "E♭", "E", "F", "G♭", "G", "A♭"];
-  var new_sharp_notes = [];
-  var new_flat_notes = [];
+  var new_notes = [];
 
   // 転調の計算に必要な変数の取得や定義
   var original_key = document.getElementById("original_key").innerHTML;
@@ -39,7 +40,7 @@ function KeyChange () {
     var chord_name = chords[i].getAttribute("name");
 
     switch(true) {
-      // ここでchords[i].innerHTMLをchord_nameに変えること
+      // chordをnameの属性から取得したので、正規表現で「dim7」などを除いて新しいchordのための計算する
       case /dim7/.test(chord_name):
         addition = "dim7";
         chord_name = chord_name.replace(/dim7/, "");
@@ -100,34 +101,52 @@ function KeyChange () {
     }
 
     // 転調の計算と新しいコード配列の定義
+    // 計算ができたら、addition（「dim7」など）を新しく計算されたchordに改めてくっつく
+    // ところで以下のコードに関してはリファクとリングができるかもしれないけどそれはまた後でするかな
     if (original_key == new_key) {
       console.log("元のキーと同じです");
       chords[i].innerHTML = chords[i].getAttribute("name");
     }
     if (key_up == true) {
       if(/♭/.test(chord_name)) {
-        //この処理は最初に行われてほしい
+        var original_position = flat_notes.indexOf(chord_name) + 1;
+        var new_position = original_position + difference;
+        if (new_position > 12) {
+          new_position -= 12;
+        }
+        --new_position;
+        new_notes.push(flat_notes[new_position] + addition);
+        chords[i].innerHTML = new_notes[i];
       } else {
         var original_position = sharp_notes.indexOf(chord_name) + 1;
         var new_position = original_position + difference;
         if (new_position > 12) {
-          new_position -= 12
+          new_position -= 12;
         }
-        --new_position; // 配列に上手く代入されるように
-        new_sharp_notes.push(sharp_notes[new_position] + addition);
-        chords[i].innerHTML = new_sharp_notes[i]; // 実装はこれだけでいいかな
+        --new_position; // 配列に上手く代入されるように（「0」から始まるから）
+        new_notes.push(sharp_notes[new_position] + addition);
+        chords[i].innerHTML = new_notes[i];
       }
     } else if (key_up == false) { //下がったと
-        // ♭のコードを作らないと
+      if(/♭/.test(chord_name)) {
+        var original_position = flat_notes.indexOf(chord_name) + 1;
+        var new_position = original_position - difference;
+        if (new_position < 1) {
+          new_position += 12;
+        }
+        --new_position;
+        new_notes.push(flat_notes[new_position] + addition);
+        chords[i].innerHTML = new_notes[i];
+      } else {
         var original_position = sharp_notes.indexOf(chord_name) + 1;
         var new_position = original_position - difference;
         if (new_position < 1) {
           new_position += 12;
         }
-        --new_position; // 配列に上手く代入されるように
-        //console.log(new_position);
-        new_sharp_notes.push(sharp_notes[new_position] + addition);
-        chords[i].innerHTML = new_sharp_notes[i];
+        --new_position; // 配列に上手く代入されるように（「0」から始まるから）
+        new_notes.push(sharp_notes[new_position] + addition);
+        chords[i].innerHTML = new_notes[i];
+      }
     }
   } // 大きなfor文の終わり (・ω・)
 }
