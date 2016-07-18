@@ -5,16 +5,16 @@ class UserMailer < ApplicationMailer
   #
   #   en.user_mailer.account_activation.subject
   #
-  
+
   def account_activation(user)
     @user = user
-    @greeting = "Sanbikaにアカウントを登録してくれてありがとうございます"
-    mail to: user.email, subject: "Account Activation"
+    @greeting = "sanbika.jpのアカウントのご登録を、ありがとうございます"
+    mail to: user.email, subject: "アカウントのアクティベーション"
   end
 
   def password_reset(user)
     @user = user
-    mail to: user.email, subject: "Password reset"
+    mail to: user.email, subject: "パスワード更新"
   end
 
 
