@@ -17,6 +17,8 @@ group :development, :test do
   gem 'pry-byebug'
   # gem 'hirb'
   # Hirb を Pry で使うには、.pryrc の設定を書く必要がある
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :development do
