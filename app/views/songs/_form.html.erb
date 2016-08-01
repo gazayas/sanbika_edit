@@ -2,8 +2,6 @@
 
 <div id="song_form_wrapper">
 
-<% if current_user == @user %>
-
   <%= form_for([@user, @song]) do |f| %>
 
     <% if @song.key != nil %>
@@ -61,7 +59,5 @@
     </div>
 
   <% end %>
-
-<% end %>
 
 </div>

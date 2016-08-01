@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
 
+  get 'home/index'
+
   get 'password_resets/new'
 
   get 'password_resets/edit'
 
-  root :to => 'users#index'
+  # root :to => 'users#index'
+  root :to => 'home#index'
 
   get '/signup' => 'users#new'
   get '/login' => 'sessions#new'
@@ -13,6 +16,7 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :songs #do
+    get '/print/:id' => 'songs#print'
       #resources :likes
     #end
   end

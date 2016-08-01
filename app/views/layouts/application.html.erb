@@ -10,13 +10,12 @@
 
 
 <nav id="nav_bar">
-  <%= link_to "賛美歌", {controller: 'users', action: 'index'} %>
+  <%= link_to "ホーム", {controller: 'home', action: 'index'} %>
   <% if current_user %>
     <%= link_to "#{current_user.name}さん", current_user %> | <%= link_to "ログアウト", '/logout' %>
   <% else %>
     <%= link_to 'ログイン', '/login' %> | <%= link_to 'アカウント登録', '/signup' %>
   <% end %>
-  <%= link_to "ホーム", {controller: 'users', action: 'index'} %>
 </nav>
 
 

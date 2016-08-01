@@ -10,7 +10,9 @@ home page の追加
 3. エラーの表示はめちゃくちゃだけどとにかく表示される。shared/errors_messages...?教科書で確認すること
 4. 外見を綺麗にすること
 5. Testを作ること
-6. key_change.jsのリファクとリング
+6. コントローラにbefore_filterが適当な場所にあるか確認して、テストで確認すること
+7. key_change.jsのリファクとリング
+
 
 ###モデルの方
 songモデルに:<br/>

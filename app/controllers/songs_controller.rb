@@ -1,5 +1,7 @@
 class SongsController < ApplicationController
 
+  before_filter :authorize, :only => [:new, :edit]
+
   def index
   end
 
@@ -45,6 +47,11 @@ class SongsController < ApplicationController
     Song.find(params[:id]).destroy
     flash[:success] = "賛美歌チャートは削除されました"
     redirect_to user_path(@user_id) # 前に定義した@user_idで元のユーザーに戻るため
+  end
+
+  def print
+    @user = User.find(params[:user_id])
+    @song = @user.songs.find(params[:id])
   end
 
   private
