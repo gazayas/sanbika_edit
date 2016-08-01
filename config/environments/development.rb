@@ -16,12 +16,11 @@ Rails.application.configure do
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = true # デフォルトは false
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.delivery_method = :test
   config.action_mailer.smtp_settings = {
     :enable_starttls_auto => true,
     :address => 'smtp.gmail.com',
     :port => '587',
-    :domain => 'heroku.com',
+    :domain => 'sanbika.herokuapp.com',
     :authentication => 'plain',
     :user_name => ENV['MAIL_USER_NAME'],
     :password => ENV['MAIL_PASSWORD']
