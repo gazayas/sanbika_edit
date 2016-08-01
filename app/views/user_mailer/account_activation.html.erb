@@ -1,4 +1,2 @@
-<p><%= @user.name + "さん、\n" + @greeting %>,</p>
-
-<p>次のリンクでアカウントをアクティベートしてください：</p>
-<%= link_to "クリックしてください", edit_account_activation_url(@user.activation_token, email: @user.email) %>
+<%= @user.name%><br/>
+<%= link_to "Activate Account", edit_account_activation_url(@user.activation_token, email: @user.email) %>

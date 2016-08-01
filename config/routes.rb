@@ -15,11 +15,14 @@ Rails.application.routes.draw do
   get '/logout' => 'sessions#destroy'
 
   resources :users do
+
     resources :songs #do
+
     get '/print/:id' => 'songs#print'
       #resources :likes
     #end
   end
+  get 'users/:name' => 'users#show'
 
   resources :account_activations, only: [:edit]
   resources :password_resets, only: [:new, :create, :edit, :update]

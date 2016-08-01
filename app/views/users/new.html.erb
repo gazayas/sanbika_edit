@@ -20,6 +20,10 @@
 	   		<td>パスワード確認</td>
    			<td><%= f.password_field :password_confirmation %></td>
    		</tr>
+			<tr>
+				<td>admin</td>
+				<td><%= check_box 'admin', 'boolean_attribute', {}, 'true', 'false' %></td>
+			</tr>
    		<tr>
   			<td><%= f.submit "送信" %></td>
   		</tr>
