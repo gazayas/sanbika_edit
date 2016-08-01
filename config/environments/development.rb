@@ -1,4 +1,5 @@
 Rails.application.configure do
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
@@ -13,16 +14,20 @@ Rails.application.configure do
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
 
+  config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true # デフォルトは false
-  ActionMailer::Base.delivery_method = :sendmail
-  ActionMailer::Base.sendmail_settings = {
+  host = 'localhost:3000'
+  config.action_mailer.default_url_options = { host: host }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
         address:        "smtp.gmail.com",
         port:           587,
         authentication: "plain",
         user_name:      ENV['MAIL_USER_NAME'],
         password:       ENV['MAIL_PASSWORD'],
-        domain:         'sanbika.herokuapp.com',
-        enable_starttls_auto: true
+        domain:         'gmail.com',
+        enable_starttls_auto: true,
+        :openssl_verify_mode => 'none'
     }
 
   # Print deprecation notices to the Rails logger.

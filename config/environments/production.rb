@@ -1,4 +1,5 @@
 Rails.application.configure do
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
@@ -62,16 +63,20 @@ Rails.application.configure do
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
+  config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true # デフォルトは false
-  ActionMailer::Base.delivery_method = :sendmail
-  ActionMailer::Base.sendmail_settings = {
+  host = 'sanbika.herokuapp.com'
+  config.action_mailer.default_url_options = { host: host }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
         address:        "smtp.gmail.com",
         port:           587,
         authentication: "plain",
         user_name:      ENV['MAIL_USER_NAME'],
         password:       ENV['MAIL_PASSWORD'],
-        domain:         'sanbika.herokuapp.com',
-        enable_starttls_auto: true
+        domain:         'gmail.com',
+        enable_starttls_auto: true,
+        :openssl_verify_mode => 'none'
     }
 
 
