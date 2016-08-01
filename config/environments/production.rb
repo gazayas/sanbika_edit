@@ -70,7 +70,7 @@ Rails.application.configure do
     :enable_starttls_auto => true,
     :address => 'smtp.gmail.com',
     :port => '587',
-    :domain => 'smtp.gmail.com',
+    :domain => 'heroku.com',
     :authentication => 'plain',
     :user_name => ENV['MAIL_USER_NAME'],
     :password => ENV['MAIL_PASSWORD']
