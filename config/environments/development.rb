@@ -14,8 +14,8 @@ Rails.application.configure do
   config.action_controller.perform_caching = false
 
   config.action_mailer.raise_delivery_errors = true # デフォルトは false
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
+  ActionMailer::Base.delivery_method = :sendmail
+  ActionMailer::Base.sendmail_settings = {
         address:        "smtp.gmail.com",
         port:           587,
         authentication: "plain",
