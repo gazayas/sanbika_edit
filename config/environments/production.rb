@@ -66,15 +66,15 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   host = 'sanbika.herokuapp.com'
   config.action_mailer.default_url_options = { host: host }
-  ActionMailer::Base.smtp_settings = {
-    :address        => 'smtp.sendgrid.net',
-    :port           => '587',
-    :authentication => :plain,
-    :user_name      => ENV['SENDGRID_USERNAME'],
-    :password       => ENV['SENDGRID_PASSWORD'],
-    :domain         => 'heroku.com',
-    :enable_starttls_auto => true
-  }
+  config.action_mailer.smtp_settings = {
+    :enable_starttls_auto => true,
+    :address => 'smtp.gmail.com',
+    :port => '587',
+    :domain => 'smtp.gmail.com',
+    :authentication => 'plain',
+    :user_name => ENV['MAIL_USER_NAME'],
+    :password => ENV['MAIL_PASSWORD']
+}
 
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
