@@ -44,7 +44,7 @@ class UsersController < ApplicationController
       flash[:success] = "プロフィルを更新しました"
       redirect_to @user
     else
-      flash[:danger] = "今の気分を更新できませんでした。文字数が140を越えていないことを確認した上、もう一度ご投稿ください"
+      flash[:danger] = "今の気分を更新できませんでした。文字数が140を越えていないか確認した上、もう一度ご投稿ください"
       redirect_to @user
     end
   end

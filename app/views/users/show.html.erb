@@ -4,7 +4,7 @@
 
   <% if current_user == @user %>
     <%= @user.name%>さん、お帰りなさい<br/>
-    <%= link_to "プロフィルの編集", edit_user_path(current_user) %>
+    <%= link_to "「今の気分」を編集する", edit_user_path(current_user) %>
   <% else %>
     <%= @user.name %>さんのページへようこそ
   <% end %>

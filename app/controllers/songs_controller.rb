@@ -5,7 +5,7 @@ class SongsController < ApplicationController
 
   def show
     @user = User.find(params[:user_id])
-    @song = @user.songs.find(params[:id])
+    @song = @user.songs.find(params[:id]) # 複数形にした方がいいかな
   end
 
   def new
@@ -19,7 +19,7 @@ class SongsController < ApplicationController
     if @song.save
       redirect_to :action => "show", :id => @song.id
     else
-      redirect_to @user
+      redirect_to @user # songのnewアクションの方がいい
     end
   end
 
@@ -33,9 +33,10 @@ class SongsController < ApplicationController
     @song = @user.songs.find(params[:id])
     if @song.update_attributes(song_params)
       flash[:succes] = "編集されました"
-      redirect_to @user
+      redirect_to user_song_path(@user, @song)
     else
-      redirect_to @user
+      redirect_to user_song_path(@user, @song)
+      flash[:notice] = "歌を保存できませんでした" # これの代わりにエラーのメッセージを表示すること
     end
   end
 

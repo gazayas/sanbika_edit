@@ -24,7 +24,14 @@ function Replace () {
     }
   }
   var chords = document.getElementsByClassName("chord");
+
   for (var i = 0; i < chords.length; i++) {
+    // 「b」を書くと「♭」に変換されて、「#」を書くと「♯」に変換される
+    if (/b/.test(chords[i].innerHTML)) {
+      chords[i].innerHTML = chords[i].innerHTML.replace(/b/, "♭");
+    } else if (/#/.test(chords[i].innerHTML)) {
+      chords[i].innerHTML = chords[i].innerHTML.replace(/#/, "♯");
+    }
     chords[i].setAttribute("name", chords[i].innerHTML);
   }
 }

@@ -15,7 +15,7 @@ User.create!(
   activated: false,
   activated_at: Time.zone.now
 )
-
+=end
 
 99.times do |n|
   name  = "user#{n}"
@@ -28,5 +28,3 @@ User.create!(
               activated: true,
               activated_at: Time.zone.now)
 end
-
-=end
