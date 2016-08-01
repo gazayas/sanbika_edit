@@ -64,6 +64,7 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   config.action_mailer.raise_delivery_errors = true # デフォルトは false
   config.action_mailer.delivery_method = :smtp
+  config.action_mailer.delivery_method = :send_mail
   config.action_mailer.smtp_settings = {
     :enable_starttls_auto => true,
     :address => 'smtp.gmail.com',
