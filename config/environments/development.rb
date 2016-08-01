@@ -18,6 +18,15 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   host = 'sanbika.herokuapp.com'
   config.action_mailer.default_url_options = { host: host, protocol: 'http' }
+  config.action_mailer.smtp_settings = {
+    :enable_starttls_auto => true,
+    :address => 'smtp.gmail.com',
+    :port => '587',
+    :domain => 'heroku.com',
+    :authentication => 'plain',
+    :user_name => ENV['MAIL_USER_NAME'],
+    :password => ENV['MAIL_PASSWORD']
+}
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
