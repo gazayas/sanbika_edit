@@ -1,2 +1,6 @@
-<%= @user.name%><br/>
-<%= link_to "Activate Account", edit_account_activation_url(@user.activation_token, email: @user.email) %>
+<p><%= @user.name%>さん、sanbika.jpへのご登録をありがとうございました</p>
+<p>次のリンクでアカウントをアクティベートしてください：</p>
+
+<p><%= link_to "アクティベート", edit_account_activation_url(@user.activation_token, email: @user.email) %></p>
+
+<p>息のあるすべてのものに主をほめたたえさせよ。主をほめたたえよ。<br/>詩篇１５０篇６節</p>

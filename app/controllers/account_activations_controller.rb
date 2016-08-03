@@ -6,7 +6,7 @@ class AccountActivationsController < ApplicationController
       user.activate
       # log_in user
       flash[:success] = "アカウントをアクティベートしました"
-      redirect_to user
+      redirect_to '/login'
     else
       flash[:danger] = "アクティベートリンクは使えません" #Invalidってきれない日本語でなんという
       redirect_to root_url
