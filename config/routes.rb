@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get 'password_resets/edit'
 
   # root :to => 'users#index'
-  root :to => 'home#index'
+  root to: 'home#index'
 
   get '/signup' => 'users#new'
   get '/login' => 'sessions#new'
@@ -15,9 +15,7 @@ Rails.application.routes.draw do
   get '/logout' => 'sessions#destroy'
 
   resources :users do
-  get '/users/:name' => 'users#show'
     resources :songs #do
-
     get '/print/:id' => 'songs#print'
       #resources :likes
     #end
