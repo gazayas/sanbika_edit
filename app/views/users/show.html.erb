@@ -2,6 +2,7 @@
 
   <!-- @user.name が出てくるところをsassで「sanbika_blue」にすること -->
 
+<% if current_user %>
   <% if current_user == @user || current_user.admin == true %>
     <%= @user.name%>さん、お帰りなさい<br/>
     <%= link_to "「今の気分」を編集する", edit_user_path(current_user) %>
@@ -12,6 +13,7 @@
   <% if current_user == @user && current_user.admin == true %>
     <p>あなたはadminです</p>
   <% end %>
+<% end %>
 
   <br/><br/>
 
