@@ -52,7 +52,7 @@ $(document).on('turbolinks:load', Replace);
   チャートの作成：<%= link_to @user.name + "さん", @user, :id => 'user_link' %>
   <p><%= @song.video %></p>
 
-  <% if current_user == @user %>
+  <% if current_user == @user || current_user.admin == true %>
     <%= link_to "歌の印刷", action: "print" %><br/>
     <%= link_to "歌の編集", edit_user_song_path(@user, @song) %><br/>
     <%= link_to "歌の削除", [@user, @song], method: :delete, data: { confirm: "本当に削除しますか？" } %>

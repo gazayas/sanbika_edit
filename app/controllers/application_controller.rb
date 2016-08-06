@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   def authorize
-    redirect_to '/login' unless current_user
+    redirect_to '/login' unless current_user || (logged_in_user.admin == true)
   end
 
 end
