@@ -6,14 +6,14 @@
     <%= @user.name%>さん、お帰りなさい<br/>
     <%= link_to "「今の気分」を編集する", edit_user_path(current_user) %>
   <% else %>
-    <%= @user.name %>のページです<br/>
+    <%= @user.name %>さんのページです<br/>
   <% end %>
 
   <% if current_user == @user && current_user.admin == true %>
     <p>あなたはadminです</p>
   <% end %>
 <% else %>
-  <%= @user.name %>のページです<br/>
+  <%= @user.name %>さんのページです<br/>
 <% end %>
 
   <br/><br/>
