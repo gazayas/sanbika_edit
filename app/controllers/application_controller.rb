@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id] #このif文は要る？
+    # @current_user ||= User.find(session[:user_id]) if session[:user_id] #このif文は要る？
     #if (user_id = cookies.signed[:user_id])
      # user = User.find_by(id: user_id)
       #if user && user.authenticated?(:remember, cookies[:remember_token])
