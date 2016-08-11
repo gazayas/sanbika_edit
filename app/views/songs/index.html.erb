@@ -1,5 +1,18 @@
+<% song_array = [] %>
+
 <% @songs.each do |song| %>
-  <% user = User.find(song.user_id) %>
-  <%= link_to song.title, url_for([user, song]) %><br/>
-  <%= song.id %><br/>
+  <% song_array << song #songモデルを丸ごと入れてorder_songs()に渡す %>
+<% end %>
+
+<% array = order_songs(song_array) %>
+
+<% i = 0 %>
+<% @songs.length.times do %>
+  <% @songs.each do |song| %>
+    <% if song.title_yomikata == array[i] %>
+      <% user = User.find(song.user_id) %>
+      <%= link_to(song.title, url_for([user, song])) %><br/>
+    <% end %>
+  <% end %>
+  <% i += 1 %>
 <% end %>
