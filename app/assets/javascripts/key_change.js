@@ -1,151 +1,211 @@
-function KeyChange () {
+// 音符の定義
+const SHARP_NOTES = ["A", "A♯", "B", "C", "C♯", "D", "D♯", "E", "F", "F♯", "G", "G♯"];
+const FLAT_NOTES = ["A", "B♭", "B", "C", "D♭", "D", "E♭", "E", "F", "G♭", "G", "A♭"];
 
-  //これをsongs.coffeeに入れる？
-
-  // 音符の定義
-  var sharp_notes = ["A", "A♯", "B", "C", "C♯", "D", "D♯", "E", "F", "F♯", "G", "G♯"];
-  var flat_notes = ["A", "B♭", "B", "C", "D♭", "D", "E♭", "E", "F", "G♭", "G", "A♭"];
-  var new_notes = [];
-
-  // 転調の計算に必要な変数の取得や定義
-  var original_key = document.getElementById("original_key").innerHTML;
+// chordがslash chord（D/F♯みたいなやつ）の場合は、再起で新しい変数を定義してそれを返すから、
+// change()を呼ぶ時に引数を渡すようにした
+function trigger() {
+  var old_key = document.getElementById("original_key").innerHTML;
   var new_key = document.getElementById("key_select").value;
-  var original_key_position = sharp_notes.indexOf(original_key);
-  var new_key_position = sharp_notes.indexOf(new_key);
-  ++original_key_position;
-  ++new_key_position;
-  var difference;
-  var key_up;
+  var chords_node_list = document.getElementsByClassName("chord");
+  var array_option = false;
 
-  var chords = document.getElementsByClassName("chord");
+  change(old_key, new_key, chords_node_list, array_option);
+}
 
-  // for文 (^o^)/
-  var i;
-
-  if (new_key_position > original_key_position) {
-    console.log("オリジナルのキーより高いです。");
-    difference = new_key_position - original_key_position;
-    key_up = true;
+function check_sharp(note) {
+  if (/#/.test(note) || /♯/.test(note)) {
+  return true;
   } else {
-    console.log("オリジナルのキーより低いです。");
-    difference = original_key_position - new_key_position;
-    key_up = false;
+  return false;
+  }
+}
+
+function check_flat(note) {
+  if (/b/.test(note) || /♭/.test(note)) {
+  return true;
+  } else {
+  return false;
+  }
+}
+
+// 「b」か「#」がnoteに入っていれば、「♭」か「♯」に変換する
+function replace_mark(note) {
+  if (check_sharp(note)) {
+  return note.replace(/#/, "♯");
+  console.log(note);
+  } else if (check_flat(note)) {
+  return note.replace(/b/, "♭");
+  } else {
+  return note;
+  }
+}
+
+function position_of(note) {
+  var position = "";
+  if (check_flat(note)) {
+    return FLAT_NOTES.indexOf(note);
+  } else {
+    return SHARP_NOTES.indexOf(note);
+  }
+}
+
+// 主要のメソッド
+function change(old_key, new_key, chords_node_list, array_option) {
+/*
+  var old_key = document.getElementById("original_key").innerHTML;
+  var new_key = document.getElementById("key_select").value;
+  var chords_node_list = document.getElementsByClassName("chord");
+*/
+  console.log(old_key + " " + new_key + " " + chords_node_list + " " + array_option);
+  var chords = [];
+
+  var key_up = true;
+  var difference = 0;
+  var new_chords = [];
+
+  // chordsに歌のオリジナルのchordを代入
+  if (array_option == false) {
+    for (var i = 0; i < chords_node_list.length; i++) {
+      chords.push(chords_node_list[i].getAttribute('name'));
+    }
+  } else {
+    chords = chords_node_list;
+    console.log(chords);
   }
 
-  // コード名をHTML要素に追加して、コードの種類を認識する
+  console.log(chords);
+
+  // 「b」か「#」が入っていれば、「♭」か「♯」に変換する
+  old_key = replace_mark(old_key);
+  new_key = replace_mark(new_key);
+  for (var i = 0; i < chords.length; i++) {
+    chords[i] = replace_mark(chords[i]);
+  }
+
+  // console.log(position_of(old_key) + "   " + position_of(new_key));
+
+  var old_key_pos = position_of(old_key) + 1;
+  var new_key_pos = position_of(new_key) + 1;
+
+  // console.log(old_key_pos + "   " + new_key_pos);
+
+  if (old_key_pos > new_key_pos) {
+    key_up = false;
+    difference = old_key_pos - new_key_pos;
+  } else if (old_key_pos < new_key_pos) {
+    key_up = true;
+    difference = new_key_pos - old_key_pos;
+  } else {
+    return chords;
+  }
+
+  // console.log(difference);
   for (i = 0; i < chords.length; i++) {
 
+    if (/\//.test(chords[i])) {
+      slash_chord_array = chords[i].split("/");
+      array_option = true;
+      var new_array = change(old_key, new_key, slash_chord_array, array_option);
+      chords[i] = new_array[0] + "/" + new_array[1];
+      new_chords.push(chords[i]);
+      chords_node_list[i].innerHTML = new_chords[i];
+    } else {
+
     var addition = "";
-    var chord_name = chords[i].getAttribute("name");
 
     switch(true) {
       // chordをnameの属性から取得したので、正規表現で「dim7」などを除いて新しいchordのための計算する
-      case /dim7/.test(chord_name):
+      case /dim7/.test(chords[i]):
         addition = "dim7";
-        chord_name = chord_name.replace(/dim7/, "");
+        chords[i] = chords[i].replace(/dim7/, "");
         break;
-      case /dim/.test(chord_name):
+      case /dim/.test(chords[i]):
         addition = "dim";
-        chord_name = chord_name.replace(/dim/, "");
+        chords[i] = chords[i].replace(/dim/, "");
         break;
-      case /2/.test(chord_name):
+      case /2/.test(chords[i]):
         addition = "2";
-        chord_name = chord_name.replace(/2/, "");
+        chords[i] = chords[i].replace(/2/, "");
         break;
-      case /sus4/.test(chord_name):
+      case /sus4/.test(chords[i]):
         addition = "sus4";
-        chord_name = chord_name.replace(/sus4/, "");
+        chords[i] = chords[i].replace(/sus4/, "");
         break;
-      case /sus/.test(chord_name):
+      case /sus/.test(chords[i]):
         addition = "sus";
-        chord_name = chord_name.replace(/sus/, "");
+        chords[i] = chords[i].replace(/sus/, "");
         break;
-      case /maj7/.test(chord_name):
+      case /maj7/.test(chords[i]):
         addition = "maj7";
-        chord_name = chord_name.replace(/maj7/, "");
+        chords[i] = chords[i].replace(/maj7/, "");
         break;
-      case /maj/.test(chord_name):
+      case /maj/.test(chords[i]):
         addition = "maj";
-        chord_name = chord_name.replace(/maj/, "");
+        chords[i] = chords[i].replace(/maj/, "");
         break;
-      case /m7/.test(chord_name):
+      case /m7/.test(chords[i]):
         addition = "m7";
-        chord_name = chord_name.replace(/m7/, "");
+        chords[i] = chords[i].replace(/m7/, "");
         break;
-      case /m/.test(chord_name):
+      case /m/.test(chords[i]):
         addition = "m";
-        chord_name = chord_name.replace(/m/, "");
+        chords[i] = chords[i].replace(/m/, "");
         break;
-      case /7/.test(chord_name):
+      case /7/.test(chords[i]):
         addition = "7";
-        chord_name = chord_name.replace(/7/, "");
+        chords[i] = chords[i].replace(/7/, "");
         break;
-      case /6/.test(chord_name):
+      case /6/.test(chords[i]):
         addition = "6";
-        chord_name = chord_name.replace(/6/, "");
+        chords[i] = chords[i].replace(/6/, "");
         break;
-      case /9/.test(chord_name):
+      case /9/.test(chords[i]):
         addition = "9";
-        chord_name = chord_name.replace(/9/, "");
+        chords[i] = chords[i].replace(/9/, "");
         break;
-      case /aug/.test(chord_name):
+      case /aug/.test(chords[i]):
         addition = "aug";
-        chord_name = chord_name.replace(/aug/, "");
+        chords[i] = chords[i].replace(/aug/, "");
         break;
-      case /11/.test(chord_name):
+      case /11/.test(chords[i]):
         addition = "11";
-        chord_name = chord_name.replace(/11/, "");
+        chords[i] = chords[i].replace(/11/, "");
       default:
         break;
     }
 
-    // 転調の計算と新しいコード配列の定義
-    // 計算ができたら、addition（「dim7」など）を新しく計算されたchordに改めてくっつく
-    // ところで以下のコードに関してはリファクとリングができるかもしれないけどそれはまた後でするかな
-    if (original_key == new_key) {
-      console.log("元のキーと同じです");
-      chords[i].innerHTML = chords[i].getAttribute("name");
-    }
+    var old_position = position_of(chords[i]) + 1;
+    var new_position = 0; // 最初は定義するだけ
+
     if (key_up == true) {
-      if(/♭/.test(chord_name)) {
-        var original_position = flat_notes.indexOf(chord_name) + 1;
-        var new_position = original_position + difference;
+        // console.log("new_position = " + old_position + " + " + difference);
+        new_position = old_position + difference;
+        // console.log(new_position);
         if (new_position > 12) {
           new_position -= 12;
         }
-        --new_position;
-        new_notes.push(flat_notes[new_position] + addition);
-        chords[i].innerHTML = new_notes[i];
-      } else {
-        var original_position = sharp_notes.indexOf(chord_name) + 1;
-        var new_position = original_position + difference;
-        if (new_position > 12) {
-          new_position -= 12;
-        }
-        --new_position; // 配列に上手く代入されるように（「0」から始まるから）
-        new_notes.push(sharp_notes[new_position] + addition);
-        chords[i].innerHTML = new_notes[i];
-      }
-    } else if (key_up == false) { //下がったと
-      if(/♭/.test(chord_name)) {
-        var original_position = flat_notes.indexOf(chord_name) + 1;
-        var new_position = original_position - difference;
+     } else { // key_up == false の場合
+        new_position = old_position - difference;
         if (new_position < 1) {
           new_position += 12;
         }
-        --new_position;
-        new_notes.push(flat_notes[new_position] + addition);
-        chords[i].innerHTML = new_notes[i];
-      } else {
-        var original_position = sharp_notes.indexOf(chord_name) + 1;
-        var new_position = original_position - difference;
-        if (new_position < 1) {
-          new_position += 12;
-        }
-        --new_position; // 配列に上手く代入されるように（「0」から始まるから）
-        new_notes.push(sharp_notes[new_position] + addition);
-        chords[i].innerHTML = new_notes[i];
-      }
     }
-  } // 大きなfor文の終わり (・ω・)
+    --new_position;
+
+    if (check_flat(chords[i])) {
+      new_chords.push(FLAT_NOTES[new_position] + addition);
+    } else {
+      new_chords.push(SHARP_NOTES[new_position] + addition);
+    }
+    if (array_option == false) {
+    chords_node_list[i].innerHTML = new_chords[i];
+    }
+  } // array_optionの終わり
+  } // 大きなfor文の終わり
+  if (array_option) {
+    array_option = false;
+    return new_chords;
+  }
+
 }

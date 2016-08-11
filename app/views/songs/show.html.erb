@@ -4,7 +4,7 @@
 // 下にある jquery の方を使う
 // turbolinksのためにそれをする
 // http://stackoverflow.com/questions/35245735/rails-turbolinks-issues-with-window-onload
-function Replace () {
+function replace_stars () {
 
   var body = document.getElementById("body");
   var re = /\*/g;
@@ -14,13 +14,13 @@ function Replace () {
   // console.log(stars.length);
   for (var i = 1; i <= stars.length; i++) {
     var true_star_index = i;
-    console.log(true_star_index);
+    //console.log(true_star_index);
     if (true_star_index % 2 == 1) {
     body.innerHTML = body.innerHTML.replace(re2, "<span class=\"chord\">");
-    console.log(body.innerHTML);
+    //console.log(body.innerHTML);
   } else if(true_star_index % 2 == 0){
       body.innerHTML = body.innerHTML.replace(re2, "</span>");
-      console.log(body.innerHTML);
+      //console.log(body.innerHTML);
     }
   }
   var chords = document.getElementsByClassName("chord");
@@ -36,9 +36,9 @@ function Replace () {
   }
 }
 
-$(document).ready(Replace);
-$(document).on('page:load', Replace);
-$(document).on('turbolinks:load', Replace);
+$(document).ready(replace_stars)
+$(document).on('page:load', replace_stars);
+$(document).on('turbolinks:load', replace_stars);
 
 </script>
 
@@ -48,7 +48,7 @@ $(document).on('turbolinks:load', Replace);
   <!-- <span id="chord_holder"></span> -->
   <span id="original_key"><%= @song.key %></span><br/> <!-- visibility: hidden か <input type="hidden"/> -->
   <% notes = Notes() %>
-  <%= select_tag(:key_select,  options_for_select(notes[0], @song.key), :onchange => "KeyChange();", :id => 'key_select') %>
+  <%= select_tag(:key_select,  options_for_select(notes[0], @song.key), :onchange => "trigger();", :id => 'key_select') %>
   <div id="body"><%= simple_format(@song.body) %></div>
   チャートの作成：<%= link_to @user.name + "さん", @user, :id => 'user_link' %>
   <p><%= @song.video %></p>
