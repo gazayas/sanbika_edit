@@ -100,8 +100,11 @@ function change(old_key, new_key, chords_node_list, array_option) {
 
     if (/\//.test(chords[i])) {
       slash_chord_array = chords[i].split("/");
+
       array_option = true;
       var new_array = change(old_key, new_key, slash_chord_array, array_option);
+      array_option = false;
+
       chords[i] = new_array[0] + "/" + new_array[1];
       new_chords.push(chords[i]);
       chords_node_list[i].innerHTML = new_chords[i];
@@ -199,8 +202,6 @@ function change(old_key, new_key, chords_node_list, array_option) {
   } // array_optionの終わり
   } // 大きなfor文の終わり
   if (array_option) {
-    array_option = false;
     return new_chords;
   }
-
 }
