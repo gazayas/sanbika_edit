@@ -52,11 +52,8 @@ function position_of(note) {
 
 // 主要のメソッド
 function change(old_key, new_key, chords_node_list, array_option) {
-/*
-  var old_key = document.getElementById("original_key").innerHTML;
-  var new_key = document.getElementById("key_select").value;
-  var chords_node_list = document.getElementsByClassName("chord");
-*/
+
+  // chords_node_listはたまに(slash chordの場合)node_listじゃなくて配列なのでchords_listに変えた方がいいかな
   console.log(old_key + " " + new_key + " " + chords_node_list + " " + array_option);
   var chords = [];
 
@@ -71,10 +68,8 @@ function change(old_key, new_key, chords_node_list, array_option) {
     }
   } else {
     chords = chords_node_list;
-    console.log(chords);
+    // console.log(chords);
   }
-
-  console.log(chords);
 
   // 「b」か「#」が入っていれば、「♭」か「♯」に変換する
   old_key = replace_mark(old_key);
