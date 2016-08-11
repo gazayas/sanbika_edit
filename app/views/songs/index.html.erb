@@ -1,0 +1,5 @@
+<% @songs.each do |song| %>
+  <% user = User.find(song.user_id) %>
+  <%= link_to song.title, url_for([user, song]) %><br/>
+  <%= song.id %><br/>
+<% end %>

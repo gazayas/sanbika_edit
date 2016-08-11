@@ -3,6 +3,7 @@ class SongsController < ApplicationController
   before_filter :authorize, :only => [:new, :edit]
 
   def index
+    @songs = Song.all
   end
 
   def show

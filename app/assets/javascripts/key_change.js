@@ -33,7 +33,6 @@ function check_flat(note) {
 function replace_mark(note) {
   if (check_sharp(note)) {
   return note.replace(/#/, "♯");
-  console.log(note);
   } else if (check_flat(note)) {
   return note.replace(/b/, "♭");
   } else {
@@ -54,14 +53,13 @@ function position_of(note) {
 function change(old_key, new_key, chords_node_list, array_option) {
 
   // chords_node_listはたまに(slash chordの場合)node_listじゃなくて配列なのでchords_listに変えた方がいいかな
-  console.log(old_key + " " + new_key + " " + chords_node_list + " " + array_option);
+  // console.log(old_key + " " + new_key + " " + chords_node_list + " " + array_option);
   var chords = [];
 
   var key_up = true;
   var difference = 0;
   var new_chords = [];
 
-  // chordsに歌のオリジナルのchordを代入
   if (array_option == false) {
     for (var i = 0; i < chords_node_list.length; i++) {
       chords.push(chords_node_list[i].getAttribute('name'));
@@ -92,7 +90,16 @@ function change(old_key, new_key, chords_node_list, array_option) {
     key_up = true;
     difference = new_key_pos - old_key_pos;
   } else {
-    return chords;
+    var original_chords = [];
+    console.log(chords_node_list);
+    for (i = 0; i < chords_node_list.length; i++) {
+      // chords_node_list[i]は文字列の場合なら、slash chordになっていることが分かるから、
+      // その場合は何もしなくて、chords_node_list本当にnodeである場合のみoriginal_chordsを実装する。
+      // slash chordを使ったらこのfor文の直接前にあるconsole.log();の出力を見てください
+      if (typeof chords_node_list[i] != 'string') {
+        chords_node_list[i].innerHTML = chords_node_list[i].getAttribute('name');
+      }
+    }
   }
 
   // console.log(difference);

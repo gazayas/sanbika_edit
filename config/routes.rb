@@ -21,6 +21,8 @@ Rails.application.routes.draw do
     #end
   end
 
+  get '/songs/index' => 'songs#index'
+
 
   resources :account_activations, only: [:edit]
   resources :password_resets, only: [:new, :create, :edit, :update]
