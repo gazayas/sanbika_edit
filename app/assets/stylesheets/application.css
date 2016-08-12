@@ -10,41 +10,29 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ *= require bootstrap.min
  *= require_tree .
  *= require_self
  */
 
 .flash {
-  margin: 0px auto;
-  text-align: center;
-  border: gray 1px solid;
+  margin: 0px auto
+  text-align: center
+  border: gray 1px solid
 }
 
-#nav_bar {
-  background-color: #000;
-
-  height: 75px;
-  width: 100%;
-
-  line-height: 75px;
-
-  text-align: right;
-
-  position: fixed;
-  overflow: hidden;
-  top: 0;
-  z-index: 10;
+/*
+.navbar a {
+  color: #FFF
 }
-
-#nav_bar a {
-  color: #FFF;
-}
-
+*/
 #main_wrapper {
-  margin-top: 75px;
+  margin-top: 75px
 }
 
+/*
 #sanbika {
-  float: left; /* (-_-)..... */
-  color: #FFF;
+  float: left (-_-).....
+  color: #FFF
 }
+*/
