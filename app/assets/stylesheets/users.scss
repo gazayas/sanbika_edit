@@ -2,21 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#new_user_form {
-	width: 40%;
-	border: gray 2px solid;
-	margin: 0px auto;
 
-	table {
-	margin: 0px auto;
-	}
-}
-
-/* アカウント登録のh1 */
-#register {
-	text-align: center;
-	margin-top: 150px;
-	margin-bottom: 100px;
+#new_user_form table {
+	/*margin: 10px auto;*/ /*application.css で定義されてるから*/
 }
 
 #user_edit {
@@ -61,4 +49,3 @@ textarea {
   width: 300px;
   height: 40px;
 }
-

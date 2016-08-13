@@ -27,3 +27,32 @@
 #main_wrapper {
   margin-top: 60px;
 }
+
+
+/* 以降をuser.scssにするかどうか考えること */
+.user_form {
+	margin-top: 150px;
+}
+.user_form table {
+  margin: 10px auto;
+}
+
+.panel {
+	margin: 0px auto;
+	width: 70%;
+}
+
+.panel-heading {
+  width: 100%;
+}
+
+.input-group {
+	margin: 10px;
+}
+
+/* formのbuttonをinput-groupにしたけど、centerにならなかったので、次のを書いたらcenterに置くことができた */
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

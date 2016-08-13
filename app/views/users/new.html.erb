@@ -1,32 +1,58 @@
-<h1 id="register">アカウント登録</h1>
-
+<div class="user_form">
 
 <%= form_for :user, url: '/users' do |f| %>
+<div class="panel panel-default">
+<div class="panel panel-heading text-center">
+	<h2 id="register">アカウント登録</h2>
+</div>
+	<% col_size = "30" %>
 	<div id="new_user_form">
   	<table>
   		<tr>
-  			<td>ユーザー名</td>
-  			<td><%= f.text_field :name %><td/>
+				<td>
+					<div class="input-group">
+						<span class="input-group-addon">
+							<span class="glyphicon glyphicon-user"></span>
+						</span>
+						<%= f.text_field :name, class: 'form-control', placeholder: 'ユーザー名', size: col_size %>
+					</div>
+				<td/>
   		</tr>
   		<tr>
-  			<td>メール</td>
-  			<td> <%= f.email_field :email %></td>
+  			<td>
+					<div class="input-group">
+						<span class="input-group-addon">
+							<span class="glyphicon glyphicon-envelope"></span>
+						</span>
+						<%= f.email_field :email, class: 'form-control', placeholder: 'メール', size: col_size %>
+					</div>
+				</td>
   		</tr>
   		<tr>
-	  		<td>パスワード</td>
-  			<td><%= f.password_field :password %></td>
+				<td>
+	  			<div class="input-group">
+						<span class="input-group-addon">
+							<span class="glyphicon glyphicon-lock"></span>
+						</span>
+  					<%= f.password_field :password, class: 'form-control', placeholder: 'パスワード', size: col_size %>
+					</div>
+				</td>
   		</tr>
    		<tr>
-	   		<td>パスワード確認</td>
-   			<td><%= f.password_field :password_confirmation %></td>
+   			<td>
+					<div class="input-group">
+						<span class="input-group-addon">
+							<span class="glyphicon glyphicon-lock"></span>
+						</span>
+						<%= f.password_field :password_confirmation, class: 'form-control', placeholder: 'パスワード確認', size: col_size %>
+					</div>
+				</td>
    		</tr>
-			<!-- <tr>
-				<td>admin</td>
-				<td><%= check_box 'admin', 'boolean_attribute', {}, 'true', 'false' %></td>
-			</tr> -->
    		<tr>
-  			<td><%= f.submit "送信" %></td>
+  			<td><%= f.submit "登録", class: 'btn btn-primary center-block' %></td>
   		</tr>
   	</table>
-  	</div>
+  </div>
+</div>
 <% end %>
+</div>

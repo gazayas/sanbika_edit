@@ -33,18 +33,12 @@
   </div>
 </nav>
 
-
 <div id="main_wrapper">
   <% flash.each do |key, value| %>
     <%= content_tag(:div, value, class: "flash") %><%# 前は class: "#{key}" でした %>
   <% end %>
-
-
   <%= yield %>
 </div>
-
-
-
 
 </body>
 </html>
