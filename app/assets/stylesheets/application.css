@@ -10,10 +10,13 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require bootstrap.min
+ *= require bootstrap
  *= require_tree .
  *= require_self
  */
+
+ @import "bootstrap-sprockets";
+ @import "bootstrap";
 
 .flash {
   margin: 0px auto;
@@ -22,5 +25,5 @@
 }
 
 #main_wrapper {
-  margin-top: 60px
+  margin-top: 60px;
 }

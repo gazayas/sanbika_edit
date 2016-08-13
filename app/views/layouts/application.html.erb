@@ -21,13 +21,13 @@
     <div class="collapse navbar-collapse navHeaderCollapse">
       <ul class="nav navbar-nav navbar-right">
         <% if current_user %>
-          <li><%= link_to "#{current_user.name}さん", current_user %></li>
-          <li><%= link_to "ログアウト", '/logout' %></li>
+          <li><%= link_to '<span class="glyphicon glyphicon-home"></span>'.html_safe +  " #{current_user.name}さん", current_user %></li>
+          <li><%= link_to '<span class="glyphicon glyphicon-eject"></span> ログアウト'.html_safe, '/logout' %></li>
         <% else %>
-          <li><%= link_to 'ログイン', '/login' %></li>
-          <li><%= link_to 'アカウント登録', '/signup' %></li>
+          <li><%= link_to '<span class="glyphicon glyphicon-user"></span> ログイン'.html_safe, '/login' %></li>
+          <li><%= link_to '<span class="glyphicon glyphicon-pencil"></span> アカウント登録'.html_safe, '/signup' %></li>
         <% end %>
-        <li><%= link_to "情報", {controller: "home",action: "info"} %></li>
+        <li><%= link_to "<span class=\"glyphicon glyphicon-info-sign\"></span>".html_safe, {controller: "home",action: "info"} %></li>
       </ul>
     </div>
   </div>
