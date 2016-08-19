@@ -1,8 +1,25 @@
 <%# provide(:title, "パスワードを忘れた場合") %>
-<h1>パスワード更新</h1>
-
-<%= form_for(:password_reset, url: password_resets_path) do |f| %>
-	<%= f.label :email %> <%# これを il8n で変えれる %>
-    <%= f.email_field :email %>
-    <%= f.submit "送信" %>
-<% end %>
+<div class="user_form">
+	<div class="panel panel-default">
+		<div class="panel panel-heading text-center">
+			<h2>パスワード更新</h2>
+		</div>
+		<%= form_for(:password_reset, url: password_resets_path) do |f| %>
+		<table>
+			<tr>
+				<td>
+					<div class="input-group">
+						<span class="input-group-addon">
+							<span class="glyphicon glyphicon-envelope"></span>
+						</span> <!-- 次の行は別のテンプレートでcol_sizeになってるけど、多分 layouts/application.html.erbに
+							変数を代入した方がいいかなと思う -->
+						<%= f.email_field :email, class: 'form-control', placeholder: 'メール', size: "30" %>
+					</div>
+				</td>
+			</tr>
+			<tr>
+    		<td><%= f.submit "送信", class: 'input-group btn btn-primary center-block' %></td>
+			</tr>
+		</table>
+		<% end %>
+</div>

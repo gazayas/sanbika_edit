@@ -15,7 +15,7 @@ class UserMailerTest < ActionMailer::TestCase
 
 =begin
   test "password_reset" do
-    user = User.first
+    user = User.first # idは...
     user.activation_token = User.new_token
     mail = UserMailer.account_activation(user)
     mail = UserMailer.password_reset(user)

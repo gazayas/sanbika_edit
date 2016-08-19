@@ -79,7 +79,7 @@ Rails.application.configure do
         user_name:      ENV['MAIL_USER_NAME'],
         password:       ENV['MAIL_PASSWORD'],
         domain:         'gmail.com',
-        # enable_starttls_auto: true,
+        enable_starttls_auto: true,
         :openssl_verify_mode => 'none'
     }
 
