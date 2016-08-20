@@ -1,52 +1,52 @@
 <div id="profile_wrapper">
 
   <!-- @user.name が出てくるところをsassで「sanbika_blue」にすること -->
-<% if current_user %>
-  <% if current_user == @user || current_user.admin == true %>
-    <%= @user.name%>さん、お帰りなさい<br/>
-    <%= link_to "「今の気分」を編集する", edit_user_path(current_user) %>
-  <% else %>
-    <%= @user.name %>さんのページです<br/>
-  <% end %>
-
+  <span id="user_name"><%= @user.name %></span>
   <% if current_user == @user && current_user.admin == true %>
     <p>あなたはadminです</p>
   <% end %>
-<% else %>
-  <%= @user.name %>さんのページです<br/>
-<% end %>
 
-  <br/><br/>
+  <br/>
 
-  今の気分：　<%= @user.status %>
+  <!-- 今の気分：-->　<%# @user.status %>
 
-  <br/><br/>
-
-  <div id="user_song_list">
-
-    <%= @user.name %>さんの賛美歌チャート<br/>
-
-    <br/>
-    <% if current_user %>
-      <% if current_user == @user || current_user.admin == true %>
-        賛美歌チャートの<%= link_to "新規作成", new_user_song_path(@user) %><br/>
-      <% end %>
+  <% if current_user %>
+    <% if current_user == @user || current_user.admin == true %>
+      <!-- <span class="glyphicon glyphicon-pencil"></span> を入れること -->
+      賛美歌チャートの<%= link_to '新規作成', new_user_song_path(@user) %><br/>
     <% end %>
+  <% end %>
+  <br/>
 
-    <br/>
-    <%# 読み方の中に空白を入れると配列が上手くソートされないので、songs/new.html.erbの中で空白をしないようにと %>
+  <div class="panel panel-default">
+    <div class="panel panel-heading">
+      <h2><%= @user.name %>さんの賛美歌チャート</h2>
+    </div>
 
+<div class="container-fluid bg-1 text-center">
+  <div class="row">
+    <table id="home-page-charts">
     <% array = order_songs(@songs) %>
-
     <% i = 0 %>
-    <% @songs.length.times do %>
-      <% @songs.each do |song| %>
-        <% if song.title_yomikata == array[i] %>
-          <%= link_to song.title, url_for([@user, song]) %><br/>
+    <% if @songs.length == 0 %>
+      <br/><p>賛美歌チャートはありません</p>
+    <% else %>
+      <% @songs.length.times do %>
+        <% @songs.each do |song| %>
+          <% if song.title_yomikata == array[i] %>
+
+          <tr>
+            <td><%= link_to song.title, url_for([@user, song]), class: 'btn btn-primary btn-lg outline home-page-charts' %><br/></td>
+          </tr>
+
+          <% end %>
         <% end %>
-      <% end %>
         <% i += 1 %>
+      <% end %>
     <% end %>
+  </table>
+  </div>
+</div>
 
     <!-- gem kaminari でページネーション -->
     <br/>
