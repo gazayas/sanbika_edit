@@ -2,6 +2,46 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+/* songs/index */
+.row {
+  padding: 5px;
+  margin: 10px;
+  a {
+    margin: 10px;
+    width: 90%;
+    font-size: 15px;
+    /*text-align: left;*/
+    .song_title_text {
+    }
+  }
+}
+
+.btn.outline {
+	background: none;
+	padding: 12px 22px;
+}
+
+.btn-primary.outline {
+	border: 2px solid #000;
+	color: #000;
+}
+
+.btn-primary.outline:hover, .btn-primary.outline:focus, .btn-primary.outline:active, .btn-primary.outline.active, .open > .dropdown-toggle.btn-primary {
+	/*color: #33a6cc;*/
+	border-color: #0099cc;
+  background-color: #0099cc;
+
+}
+.btn-primary.outline:active, .btn-primary.outline.active {
+	border-color: #007299;
+	color: #007299;
+	box-shadow: none;
+}
+
+
+/* 以降はBoostrapではないから変えたい */
+
+
 h1 { /* これをした方がいいかな... */
   margin-top: 100px;
   text-align: center;

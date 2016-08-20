@@ -1,3 +1,11 @@
-<% @users.each do |user| %>
-  <%= link_to user.name, user %> 今の気分：<%= user.status %><br/>
-<% end %>
+<div class="container-fluid bg-3 text-center">
+  <div class="row">
+  <% @users.each do |user| %>
+    <% if user.activated != false %><!-- これをunless文に変えたい -->
+      <div class="col-sm-4 space">
+        <%= link_to(user.name, user, class: 'btn btn-primary btn-lg outline') %>
+      </div>
+    <% end %>
+  <% end %>
+  </div>
+</div>
