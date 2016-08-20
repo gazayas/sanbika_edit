@@ -8,4 +8,12 @@ class Song < ActiveRecord::Base
   validates :artist_yomikata, length: {maximum: 30}
   validates :body, presence: true, length: {maximum: 3000}
 
+  def self.search(search)
+    if search
+      Song.where(['title LIKE ?', "%#{search}%"])
+    else
+      Song.all
+    end
+  end
+
 end

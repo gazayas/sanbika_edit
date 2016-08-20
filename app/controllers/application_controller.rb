@@ -19,4 +19,6 @@ class ApplicationController < ActionController::Base
     redirect_to '/login' unless current_user || (logged_in_user.admin == true)
   end
 
+  
+
 end

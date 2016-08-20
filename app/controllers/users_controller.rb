@@ -56,6 +56,14 @@ class UsersController < ApplicationController
     redirect_to users_path
   end
 
+  def self.search(search)
+    if search
+      User.where(['name LIKE ?', "#{search}"])
+    else
+      User.all
+    end
+  end
+
   private
 
   def user_params

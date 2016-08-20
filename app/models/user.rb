@@ -56,6 +56,14 @@ class User < ActiveRecord::Base
     reset_sent_at < 2.hours.ago
   end
 
+  def self.search(search)
+    if search
+      User.where(['name LIKE ?', "%#{search}%"])
+    else
+      User.all
+    end
+  end
+
   private
 
 =begin

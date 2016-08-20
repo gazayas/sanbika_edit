@@ -21,7 +21,7 @@ Rails.application.routes.draw do
       #resources :likes
     #end
   end
-
+  get '/songs/search' => 'songs#search'
   get '/songs/index' => 'songs#index'
 
 

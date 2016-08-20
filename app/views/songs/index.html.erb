@@ -1,3 +1,18 @@
+<div class="panel panel-default">
+  <div class="panel panel-heading text-center">
+    <h2>チャートの検索</h2>
+  </div>
+  <div class="input-group">
+    <span class="input-group-addon">
+      <span class="glyphicon glyphicon-search"></span>
+    </span>
+        <%= form_tag "/songs/search", :method => 'get' do %>
+          <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: '曲名で検索' %>
+        <% end %>
+    </div>
+    <%= submit_tag "検索", class: 'input-group btn btn-primary center-block', :name => nil %>
+</div>
+
 <% song_array = [] %>
 
 <% @songs.each do |song| %>

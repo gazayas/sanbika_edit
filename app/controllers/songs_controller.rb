@@ -55,6 +55,10 @@ class SongsController < ApplicationController
     @song = @user.songs.find(params[:id])
   end
 
+  def search
+    @song_search = Song.search(params[:search])
+  end
+
   private
   def song_params
     params.require(:song).permit(:title, :key, :body, :video, :user_id,
