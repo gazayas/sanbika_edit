@@ -2,46 +2,69 @@ require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
 
-  test "ユーザーが上手く登録される" do
-    name = "namesgabe"
-    email = "example@example.com"
-    password = "password"
-    user = create_user(1, name, email, password)
+  test "適切な変数のユーザーが上手く登録される" do
+    user = create_user
+    user.name = "sup_my_names_geeb"
+    user.email = "geeb@gmail.com"
+    user.password = "password"
     assert user.valid?
   end
 
+  # user = create_user が上手く行ったかどうかを確認するために、
+  # 直接その後に assert user.valid? を書いてもいい
   test "ユーザー名は短い" do
-    name = "gabe"
-    email = "gabe@example.com"
-    password = "password"
-    user = create_user(1, name, email, password)
+    user = create_user
+    user.name = "gabe"
     assert user.invalid?
   end
 
   test "ユーザー名が長い" do
-    name = "1234567890123456789012345678901"
-    email = "example@example.com"
-    password = "password"
-    user = create_user(1, name, email, password)
+    user = create_user
+    user.name = "1234567890123456789012345678901"
     assert user.invalid?
   end
 
-  test "メールアドレスではない" do
-    name = "namesgabe"
-    email = "example-email.com"
-    password = "password"
-    user = create_user(1, name, email, password)
+  test "ユーザー名はない" do
+    user = create_user
+    user.name = nil
+    assert user.invalid?
+  end
+
+  test "適切なメールアドレスではない" do
+    user = create_user
+    user.email = "example-email.com"
+    assert user.invalid?
+  end
+
+  test "メールアドレスはない" do
+    user = create_user
+    user.email = nil
     assert user.invalid?
   end
 
   test "パスワードは短い" do
-    name = "namesgabe"
-    email = "example@example.com"
-    password="os"
-    user = create_user(1, name, email, password)
+    user = create_user
+    user.password = "hey"
     assert user.invalid?
   end
 
+  test "パスワードは長い" do
+    user = create_user
+    user.password = "1234567890123456789012345678901234567890"
+    assert user.invalid?
+  end
+
+  test "パスワードはない" do
+    user = create_user
+    user.password = nil
+    assert user.invalid?
+  end
+
+  test "パスワードの暗号化機能" do
+    user = create_user
+    assert_equal user.password, "password"
+    assert_not_equal user.password, user.password_digest
+  end
 
 =begin
   def authenticated?(attribute, token)
