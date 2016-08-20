@@ -1,7 +1,7 @@
 <div id="profile_wrapper">
 
   <!-- @user.name が出てくるところをsassで「sanbika_blue」にすること -->
-  <span id="user_name"><%= @user.name %></span>
+  <span id="show_user_name"><%= @user.name %></span>
   <% if current_user == @user && current_user.admin == true %>
     <p>あなたはadminです</p>
   <% end %>
