@@ -1,4 +1,19 @@
-
+<% if @song.errors.present? %>
+  <div class="alert alert-danger">
+    <ul>
+      <% @song.errors.messages.each {|key, value| %>
+        <li>
+          <%= key.to_s + ": " %>
+            <ul>
+              <% value.each do |v| %>
+                <li><%= v %></li>
+              <% end %>
+            </ul>
+        </li>
+      <% } %>
+    </ul>
+  </div>
+<% end %>
 
 
 <% notes = Notes() %> <!-- 音符の取得 -->

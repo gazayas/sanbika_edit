@@ -23,8 +23,8 @@ class SongsController < ApplicationController
     if @song.save
       redirect_to :action => "show", :id => @song.id
     else
+      flash.now[:danger] = "歌は保存されませんでした"
       render 'new'
-      flash[:danger] = "歌は保存されませんでした"
     end
   end
 

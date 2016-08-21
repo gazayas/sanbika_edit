@@ -34,9 +34,9 @@
 </nav>
 
 <div id="main_wrapper">
-  <% if flash[:danger] %>
+  <% if flash.now[:danger] %>
     <div class="alert alert-danger">
-      <%= flash[:danger] %>
+      <%= flash.now[:danger] %>
     </div>
   <% end %>
   <%# flash.each do |key, value| %>
