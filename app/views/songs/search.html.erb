@@ -11,8 +11,8 @@
             '<br/>チャートの作者：' + user.name).html_safe,
             url_for([user, song]), class: 'btn btn-primary btn-lg outline')
           %><br/>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
     <% else %>
       <h3 class="alert alert-danger">歌は見つかりませんでした</h3>
     <% end %>

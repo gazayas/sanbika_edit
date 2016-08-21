@@ -21,6 +21,7 @@ class SongsController < ApplicationController
     @user = User.find(params[:user_id])
     @song = @user.songs.create(song_params)
     if @song.save
+      flash[:success] = "新しい賛美歌チャートを作成しました"
       redirect_to :action => "show", :id => @song.id
     else
       flash.now[:danger] = "歌は保存されませんでした"
@@ -38,11 +39,11 @@ class SongsController < ApplicationController
     @user = User.find(params[:user_id])
     @song = @user.songs.find(params[:id])
     if @song.update_attributes(song_params)
-      flash[:succes] = "編集されました"
+      flash[:success] = "賛美歌チャートは編集されました"
       redirect_to user_song_path(@user, @song)
     else
       redirect_to user_song_path(@user, @song)
-      flash[:notice] = "歌を保存できませんでした" # これの代わりにエラーのメッセージを表示すること
+      flash[:danger] = "賛美歌チャートは保存されませんでした" # これの代わりにエラーのメッセージを表示すること
     end
   end
 

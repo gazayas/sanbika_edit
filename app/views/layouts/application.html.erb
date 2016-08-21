@@ -38,6 +38,10 @@
     <div class="alert alert-danger">
       <%= flash.now[:danger] %>
     </div>
+  <% elsif flash.now[:success] %>
+    <div class="alert alert-success text-center">
+      <%= flash.now[:success] %>
+    </div>
   <% end %>
   <%# flash.each do |key, value| %>
     <%#= content_tag(:div, value, class: "flash") %><%# 前は class: "#{key}" でした %>
