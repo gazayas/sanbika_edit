@@ -34,11 +34,19 @@
 </nav>
 
 <div id="main_wrapper">
-  <% flash.each do |key, value| %>
-    <%= content_tag(:div, value, class: "flash") %><%# 前は class: "#{key}" でした %>
+  <% if flash[:danger] %>
+    <div class="alert alert-danger">
+      <%= flash[:danger] %>
+    </div>
   <% end %>
+  <%# flash.each do |key, value| %>
+    <%#= content_tag(:div, value, class: "flash") %><%# 前は class: "#{key}" でした %>
+  <%# end %>
+
   <%= yield %>
 </div>
+
+<div class="footer"></div><!-- これを変えたいけど、一応cssの方ではyieldとページの下と間を置くためだ -->
 
 </body>
 </html>

@@ -13,7 +13,9 @@
   <% if current_user %>
     <% if current_user == @user || current_user.admin == true %>
       <!-- <span class="glyphicon glyphicon-pencil"></span> を入れること -->
-      賛美歌チャートの<%= link_to '新規作成', new_user_song_path(@user) %><br/>
+      <%= link_to '<span class="glyphicon glyphicon-pencil"></span> チャートの新規作成'.html_safe,
+                  new_user_song_path(@user),
+                  class: 'btn btn-primary' %><br/>
     <% end %>
   <% end %>
   <br/>

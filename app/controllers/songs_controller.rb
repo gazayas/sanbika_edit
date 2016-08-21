@@ -14,6 +14,7 @@ class SongsController < ApplicationController
   def new
     @user = User.find(params[:user_id])
     @song = @user.songs.build
+    @panel_heading = "賛美歌チャートの新規作成"
   end
 
   def create
@@ -22,13 +23,15 @@ class SongsController < ApplicationController
     if @song.save
       redirect_to :action => "show", :id => @song.id
     else
-      redirect_to @user # songのnewアクションの方がいい
+      render 'new'
+      flash[:danger] = "歌は保存されませんでした"
     end
   end
 
   def edit
     @user = User.find(params[:user_id])
     @song = @user.songs.find(params[:id])
+    @panel_heading = "賛美歌チャートの編集"
   end
 
   def update

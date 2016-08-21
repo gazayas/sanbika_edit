@@ -43,7 +43,7 @@ $(document).on('turbolinks:load', replace_stars);
 </script>
 
 <div id="song_wrapper">
-  <h1 id="song_title"><%= @song.title %></h1>
+  <h1 id="show_song_title"><%= @song.title %></h1>
   <p>作曲者：<%= @song.artist %></p>
   <!-- <span id="chord_holder"></span> -->
   <span id="original_key"><%= @song.key %></span><br/> <!-- visibility: hidden か <input type="hidden"/> -->

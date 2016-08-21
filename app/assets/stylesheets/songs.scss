@@ -45,6 +45,17 @@
 
 
 
+/* new.html.erb edit.html.erb */
+
+#song_form {
+  margin: 0px auto;
+  margin-top: 10px;
+  input {
+    margin: 5px;
+  }
+}
+
+
 /* 以降はBoostrapではないから変えたい */
 
 h1 { /* これをした方がいいかな... */
@@ -67,7 +78,7 @@ body { /* application.css にすること */
   visibility: hidden;
 }
 
-#song_title {
+#show_song_title {
   margin-top: 100px;
   background-color: #000;
   color: #FFF;

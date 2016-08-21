@@ -1,35 +1,38 @@
+
+
+
 <% notes = Notes() %> <!-- 音符の取得 -->
-
-<div id="song_form_wrapper">
-
+<!--div id="song_form_wrapper"-->
   <%= form_for([@user, @song]) do |f| %>
-
     <% if @song.key != nil %>
       <% selected_key = @song.key %> <%# editの場合 %>
     <% else %>
       <% selected_key = "C" %> <%# newの場合 %>
     <% end %>
 
-    <table>
+  <div class="panel panel-default">
+    <div class="panel panel-heading">
+      <h1><%= @panel_heading %></h1>
+    </div>
+    <% col_size = "50" %>
+    <table id="song_form">
       <tr>
-        <td>曲名</td>
-        <td><%= f.text_field :title, :id => "song_title_form" %></td>
+        <td><%= f.text_field :title, class: 'form-control', placeholder: '曲名', size: col_size %></td>
       </tr>
       <tr>
-        <td>読み方</td>
-        <td><%= f.text_field :title_yomikata %></td>
+        <td><%= f.text_field :title_yomikata, class: 'form-control', placeholder: '読み方', size: col_size %></td>
       </tr>
       <tr>
-        <td>作曲者</td>
-        <td><%= f.text_field :artist %></td>
+        <td><%= f.text_field :artist, class: 'form-control', placeholder: '作曲者', size: col_size %></td>
+      </tr>
+        <td><%= f.text_field :artist_yomikata, class: 'form-control', placeholder: '読み方', size: col_size %> </td>
       </tr>
       <tr>
-        <td>読み方</td>
-        <td><%= f.text_field :artist_yomikata %> </td>
-      </tr>
-      <tr>
-        <td>キー</td>
-        <td><%= f.select(:key, options_for_select(notes[0], :selected => selected_key)) %></td>
+        <td>
+          キー <%= f.select(:key, options_for_select(notes[0], :selected => selected_key),
+                            class: 'form-control',
+                            size: col_size) %>
+        </td>
       </tr>
     </table>
 
@@ -43,20 +46,22 @@
           <li>例：「*G*　　*D/F#*　　*Em*　　*C*」　→　「G　　D/F♯　　Em　　C」</li>
           <li>ヒント：保存すると「*」が消えますので、チャートを記述する際には、<br/>
             コードの位置を決めてから「*」を入れていくのが一番簡単なやり方です</li>
-          <li>また、キーが間違っているとコードの転調も上手く動作されないので、キーは間違いがないかご確認ください</li>
+          <li>また、キーが間違っているとコードの転調が上手く動作されないので、キーは間違いがないかご確認ください</li>
           <li>フラット記号を書くには小文字の「b」か日本語のキーボードで「♭」を書きます</li>
           <li>シャープ記号を書くには「#」か日本語のキーボードで「♯」を書きます</li>
-
         </ul>
       </div>
     </div>
 
     <div id="song_form_continuation">
-      <%= f.text_area :body, :id => "song_chart" %><br/>
+      <%= f.text_area :body, :id => "song_chart", class: 'input-lg' %><br/>
 
       <!-- 動画のリンク: <%# f.text_field :video %><br/> -->
 
-      <%= f.submit "保存" %>
+      <br/><!-- この <br/> よりも適切なcssの方がいいけどww -->
+      <%= f.submit "保存", class: 'btn btn-primary' %>
+      <br/>
+      <br/>
     </div>
 
   <% end %>

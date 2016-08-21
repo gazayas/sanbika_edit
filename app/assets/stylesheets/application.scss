@@ -27,6 +27,14 @@
        image-url("bootstrap/glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format("svg")
 }
 
+.alert {
+  width: 40%;
+  margin: 0px auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+
 .flash {
   margin: 0px auto;
   text-align: center;
@@ -64,4 +72,9 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+.footer {
+  margin-top: 100px;
+
 }
