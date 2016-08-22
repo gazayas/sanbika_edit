@@ -21,6 +21,7 @@ gem 'figaro'
 gem 'rails_12factor', group: :production
 
 group :development, :test do
+  gem 'factory_girl_rails'
   gem 'pry-byebug'
   # gem 'hirb'
   # Hirb を Pry で使うには、.pryrc の設定を書く必要がある

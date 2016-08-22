@@ -5,7 +5,7 @@ class UserTest < ActiveSupport::TestCase
   test "適切な変数のユーザーが上手く登録される" do
     user = create_user
     user.name = "sup_my_names_geeb"
-    user.email = "geeb@gmail.com"
+    user.email = "geeb1@gmail.com"
     user.password = "password"
     assert user.valid?
   end
@@ -60,7 +60,7 @@ class UserTest < ActiveSupport::TestCase
     assert user.invalid?
   end
 
-  test "パスワードの暗号化機能" do
+  test "パスワードの暗号化機能" do # User.digest(string) は create_user で行われる
     user = create_user
     assert_equal user.password, "password"
     assert_not_equal user.password, user.password_digest

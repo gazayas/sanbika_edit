@@ -1,13 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: gazayas
-  email: g-zayas@hotmail.com
-  password_digest: password
+  name: namesgaaaaaaaabe
+  email: gaaaaaabe@hotmail.com
   id: 1
 
 two:
-  name: gazayas47
-  email: gazayas47@gmail.com
-  password_digest: password2
+  name: namesgeeeeeeeeb
+  email: geeeeeeeeb@gmail.com
   id: 2
