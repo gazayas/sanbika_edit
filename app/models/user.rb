@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
 
   validates :status, length: { maximum: 140 }
 
-  validates :password, presence: true, length: {minimum: 5, maximum: 30}
+  validates :password, length: {minimum: 5, maximum: 30}
   validates :password_digest, presence: true, length: {minimum: 4, maximum: 60}
 
   def User.digest(string)

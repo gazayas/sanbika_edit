@@ -2,14 +2,16 @@
 
 one:
   title: MyString
+  title_yomikata: 文字列
   key: MyString
   body: MyText
   video: MyString
-  user_id: 
+  user_id: 1
 
 two:
   title: MyString
+  title_yomikata: 文字列
   key: MyString
   body: MyText
   video: MyString
-  user_id: 
+  user_id: 2

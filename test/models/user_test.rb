@@ -2,6 +2,13 @@ require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
 
+  test "fixture" do
+    user = User.first
+    user.password = "password" # この２行をヘルパーにすること
+    user.password_digest = User.digest(user.password)
+    assert user.valid?
+  end
+
   test "適切な変数のユーザーが上手く登録される" do
     user = create_user
     user.name = "sup_my_names_geeb"
@@ -13,7 +20,10 @@ class UserTest < ActiveSupport::TestCase
   # user = create_user が上手く行ったかどうかを確認するために、
   # 直接その後に assert user.valid? を書いてもいい
   test "ユーザー名は短い" do
-    user = create_user
+    user = User.first
+    user.password = "password"
+    user.password_digest = User.digest(user.password)
+    assert user.valid?
     user.name = "gabe"
     assert user.invalid?
   end
