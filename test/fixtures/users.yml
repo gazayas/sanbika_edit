@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: namesgaaaaaaaabe
-  email: gaaaaaabe@hotmail.com
-  id: 1
+#one:
+  #name: namesgaaaaaaaabe
+  #email: gaaaaaabe@hotmail.com
+  #id: 1
 
-two:
-  name: namesgeeeeeeeeb
-  email: geeeeeeeeb@gmail.com
-  id: 2
+#two:
+  #name: namesgeeeeeeeeb
+  #email: geeeeeeeeb@gmail.com
+  #id: 2

@@ -2,7 +2,8 @@ require 'test_helper'
 
 class UserMailerTest < ActionMailer::TestCase
   test "account_activation" do
-    user = User.first
+    #user = User.first
+    user = FactoryGirl.create(:user)    
     user.activation_token = User.new_token
     mail = UserMailer.account_activation(user)
     assert_equal "Account Activation", mail.subject

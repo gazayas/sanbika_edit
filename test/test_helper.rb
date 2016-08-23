@@ -3,10 +3,19 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 
 class ActiveSupport::TestCase
-  # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
-  fixtures :all
 
-  # これをFactory Girlsでした方がいいと思うけどな...
+  FactoryGirl.define do
+    factory :user do
+      sequence(:id) {|n| n + 1}
+      sequence(:name) {|n| "geeb" + n.to_s}
+      sequence(:email) {|n| "geeb" + n.to_s + "@example.com"}
+      sequence(:password) {|n| "supbro" + n.to_s}
+    end
+  end
+
+
+  fixtures :all
+  # これじゃなくてfixtures。というかfixturesじゃなくてFactoryGirl笑
   def create_user
     # user.valid?はfalseの時、user.errors.messagesでエラーをご覧ください
     user = User.new
@@ -24,6 +33,8 @@ class ActiveSupport::TestCase
 
     user
   end
+
+
 
 
 end
