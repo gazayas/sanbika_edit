@@ -4,6 +4,7 @@ require 'rails/test_help'
 
 class ActiveSupport::TestCase
 
+=begin
   FactoryGirl.define do
     factory :user do
       sequence(:id) {|n| n + 1}
@@ -12,6 +13,7 @@ class ActiveSupport::TestCase
       sequence(:password) {|n| "supbro" + n.to_s}
     end
   end
+=end
 
 
   fixtures :all
