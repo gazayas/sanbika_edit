@@ -23,34 +23,21 @@
   </table>
 </div>
 
-<% song_array = [] %>
-
-<% @songs.each do |song| %>
-  <% song_array << song %><%# songモデルを丸ごと入れてorder_songs()に渡す %>
-<% end %>
-
-<% array = order_songs(song_array) %>
-
 <div class="container-fluid bg-3 text-center">
   <h1>賛美歌チャート</h1>
   <div class="row">
-    <% i = 0 %>
-    <% @songs.length.times do %>
-      <% @songs.each do |song| %>
-        <% if song.title_yomikata == array[i] %>
-          <% user = User.find(song.user_id) %>
-
-              <div class="col-sm-4 space">
-                <%= link_to(
-                  ('<span class="song_title_text">' + song.title + '</span>' +
-                  '<br/>チャートの作者：' + user.name).html_safe,
-                  url_for([user, song]), class: 'btn btn-primary btn-lg outline')
-                %><br/>
-              </div>
-
-        <% end %>
-     <% end %>
-     <% i += 1 %>
-   <% end %>
+    <% @users.each do |user| %>
+      <% song_array = user.songs %>
+      <% array = order_songs(song_array) %>
+      <% array.each do |youso| %>
+        <div class="col-sm-4 space">
+          <%= link_to(
+            ('<span class="song_title_text">' + youso.title + '</span>' +
+            '<br/>チャートの作者：' + user.name).html_safe,
+            url_for([user, youso]), class: 'btn btn-primary btn-lg outline')
+          %><br/>
+        </div>
+      <% end %>
+    <% end %>
   </div>
 </div>

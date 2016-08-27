@@ -28,30 +28,22 @@
 <div class="container-fluid bg-1 text-center">
   <div class="row">
     <table id="home-page-charts">
-    <% array = order_songs(@songs) %>
-    <% i = 0 %>
+    <% new_song_order = order_songs(@songs) %>
     <% if @songs.length == 0 %>
       <br/><p>賛美歌チャートはありません</p>
     <% else %>
-      <% @songs.length.times do %>
-        <% @songs.each do |song| %>
-          <% if song.title_yomikata == array[i] %>
-
-          <tr>
-            <td><%= link_to song.title, url_for([@user, song]), class: 'btn btn-primary btn-lg outline home-page-charts' %><br/></td>
-          </tr>
-
-          <% end %>
-        <% end %>
-        <% i += 1 %>
+      <% new_song_order.each do |song| %>
+        <tr>
+          <td><%= link_to song.title, url_for([@user, song]), class: 'btn btn-primary btn-lg outline home-page-charts' %><br/></td>
+        </tr>
       <% end %>
     <% end %>
   </table>
   </div>
 </div>
 
-    <!-- gem kaminari でページネーション -->
-    <br/>
+  <!-- gem kaminari でページネーション -->
+  <br/>
   </div>
 
   <br/><br/>

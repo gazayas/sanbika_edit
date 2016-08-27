@@ -1,3 +1,18 @@
+song_params = [
+  [
+    title: '賛美しよう',
+    title_yomikata: 'さんびしよう',
+    key: 'C',
+    body: '*C*   *Am*   *F*   *Cb*<br/><br/>賛美歌の歌詞はここに入ります'
+  ],
+  [
+    title: '愛である',
+    title_yomikata: 'あいである',
+    key: 'C',
+    body: '*C*   *Am*   *F*   *Cb*<br/><br/>賛美歌の歌詞はここに入ります'
+  ]
+]
+
 99.times do |n|
   name  = "user#{n}"
   email = "example-#{n+1}@example.org"
@@ -10,13 +25,8 @@
     activated: true,
     activated_at: Time.zone.now,
     )
-  1.times do |i|
-    user.songs.create!(
-      title: "賛美歌#{i}",
-      title_yomikata: "さんびか#{i}",
-      key: "C",
-      body: "*C*   *Am*   *F*   *Cb*<br/><br/>賛美歌の歌詞はここに入ります"
-    )
+  2.times do |n|
+    user.songs.create!(song_params[n])
   end
   user
 end
