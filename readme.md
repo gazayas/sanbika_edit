@@ -2,8 +2,6 @@
 
 ###これからやらないといけないこと
 
-tinymceを使って<span>を定義したいと思います。
-
 「メールを表示しますか？」のboolをuser migrationに追加する
 そしてtrueならshow.html.erbで表示するようにすること
 
