@@ -1,45 +1,60 @@
 <script>
-// *で囲まれたコードの<span></span>化
-// 次の関数に対して、 「window.onload = function Replace() { ... }」を使うのではなくて、
-// 下にある jquery の方を使う
-// turbolinksのためにそれをする
-// http://stackoverflow.com/questions/35245735/rails-turbolinks-issues-with-window-onload
-function replace_stars () {
+// これをapplication.jsに置いた方がいいかな
+window.onload = function() {
+  $(document).ready(function () {
+    $('strong').each(function () {
+      var txt = $(this).html();
+      $(this).html(txt.replace(/&nbsp;/g, " "));
+      var html = this.innerHTML;
+      $(this).replaceWith('<span class="chord_lines">' + html + '</span>');
+      console.log("全ての<strong>を返す：");
+      console.log(this);
+    });
+  });
 
-  var body = document.getElementById("body");
-  var re = /\*/g;
-  var re2 = /\*/; //よく分からないけど、これで var stars の定義をしようとしたら、４個しか帰ってきてなかった
-  var stars = body.innerHTML.match(re);
-  // console.log(stars);
-  // console.log(stars.length);
-  for (var i = 1; i <= stars.length; i++) {
-    var true_star_index = i;
-    //console.log(true_star_index);
-    if (true_star_index % 2 == 1) {
-    body.innerHTML = body.innerHTML.replace(re2, "<span class=\"chord\">");
-    //console.log(body.innerHTML);
-  } else if(true_star_index % 2 == 0){
-      body.innerHTML = body.innerHTML.replace(re2, "</span>");
-      //console.log(body.innerHTML);
+  var chords = document.getElementsByClassName('chord_lines');
+  for (var y = 0; y < chords.length; y++){
+    var chord_string = chords[y].innerHTML;
+    var chord_string_for_array = chords[y].innerHTML;
+    chord_string_for_array = chord_string_for_array.replace(/\s+/g,' '); // 空白をとって一個だけのスペースと代わる
+    var chord_array = chord_string_for_array.split(" ");
+    for (var i = 0; i < chord_array.length; i ++) {
+      if ((/\//).test(chord_array[i]) == true) {
+        var new_array = chord_array[i].split("/");
+        chord_array[i] = new_array;
+      }
     }
+
+    // newest_arrayとかを変えましょうww
+    // もっと分かりやすく
+    var newest_array = [];
+    for (var i = 0; i < chord_array.length; i++) {
+      if (typeof chord_array[i] == "string") {
+        newest_array.push(chord_array[i]);
+      } else {
+        // これをfor文に入れた方がいいかな
+        newest_array.push(chord_array[i][0]);
+        newest_array.push(chord_array[i][1]);
+      }
+    }
+
+    for (var i = 0; i < newest_array.length; i++) {
+      var re = new RegExp(newest_array[i], "g");
+      var invalid_re = new RegExp(newest_array[i] + "</span>"); // </span>がもう既に付けられた場合
+      // var invalid_re2 = new RegExp(chord_array[i] + "/"); // スラッシュコードの場合
+      if ((invalid_re).test(chord_string) == false) {
+          chord_string = chord_string.replace(re,'<span class="chord">' + newest_array[i] + '</span>');
+          console.log(chord_string);
+      }
+    }
+    chords[y].innerHTML = chord_string; // その行を実装します
   }
-  var chords = document.getElementsByClassName("chord");
-
-  for (var i = 0; i < chords.length; i++) {
-    // 「b」を書くと「♭」に変換されて、「#」を書くと「♯」に変換される
-    if (/b/.test(chords[i].innerHTML)) {
-      chords[i].innerHTML = chords[i].innerHTML.replace(/b/, "♭");
-    } else if (/#/.test(chords[i].innerHTML)) {
-      chords[i].innerHTML = chords[i].innerHTML.replace(/#/, "♯");
-    }
-    chords[i].setAttribute("name", chords[i].innerHTML);
+  // これで、全てのコードのnameが定義されるから、key_change.jsを行うだけ
+  var spans = document.getElementsByClassName('chord');
+  for (var i = 0; i < spans.length; i++) {
+    spans[i].setAttribute("name", spans[i].innerHTML);
   }
 }
-
-$(document).ready(replace_stars)
-$(document).on('page:load', replace_stars);
-$(document).on('turbolinks:load', replace_stars);
-
 </script>
 
 <div id="song_wrapper">
