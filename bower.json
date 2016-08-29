@@ -1,0 +1,23 @@
+{
+  "name": "sanbika_edit",
+  "homepage": "https://github.com/gazayas/sanbika_edit",
+  "authors": [
+    "gazayas <g-zayas@hotmail.com>"
+  ],
+  "description": "賛美歌を作るためのサイト",
+  "main": "app/home/index.html",
+  "keywords": [
+    "イエス様"
+  ],
+  "license": "n/a",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "rangyinputs": "^1.2.0"
+  }
+}

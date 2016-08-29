@@ -19,6 +19,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'unicorn'
 gem 'figaro'
 gem 'rails_12factor', group: :production
+gem 'tinymce-rails'
 
 group :development, :test do
   gem 'factory_girl_rails'

@@ -1,0 +1,5 @@
+toolbar:
+  - bold
+menubar: false
+selector: 'textarea'
+height: 275
