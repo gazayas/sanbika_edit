@@ -1,8 +1,8 @@
-<script>
+ <script>
 // これをapplication.jsに置いた方がいいかな
 window.onload = function() {
   $(document).ready(function () {
-    $('strong').each(function () {
+    $('em').each(function () {
       var txt = $(this).html();
       $(this).html(txt.replace(/&nbsp;/g, " "));
       var html = this.innerHTML;

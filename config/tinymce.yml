@@ -1,5 +1,5 @@
 toolbar:
-  - bold
+  - italic
 menubar: false
 selector: 'textarea'
 height: 275
