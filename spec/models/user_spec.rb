@@ -26,7 +26,14 @@ RSpec.describe User, type: :model do
 
     describe 'e-mail' do
       it '適切なメールでないこと' do
-        user.email = "ThisIsNotARealEmail"
+        user.email = "ThisIsNotARealEmail" # これの変わりに let(:email) を使った方がいいかな
+        expect(user).to be_invalid
+      end
+    end
+
+    describe 'password' do
+      it '適切なパスワードでないこと' do
+        user.password = "ok"
         expect(user).to be_invalid
       end
     end
