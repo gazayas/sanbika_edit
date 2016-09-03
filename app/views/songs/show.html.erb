@@ -52,9 +52,14 @@ window.onload = function() {
   // これで、全てのコードのnameが定義されるから、key_change.jsを行うだけ
   var spans = document.getElementsByClassName('chord');
   for (var i = 0; i < spans.length; i++) {
-    spans[i].setAttribute("name", spans[i].innerHTML);
+    var note = spans[i].innerHTML; // １行上の spans[i].innerHTMLをこれにする
+    spans[i].setAttribute("name", note);
+    spans[i].innerHTML = replace_mark(note);
   }
+
 }
+
+
 </script>
 
 <div id="song_wrapper">

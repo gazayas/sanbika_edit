@@ -32,12 +32,11 @@ function check_flat(note) {
 // 「b」か「#」がnoteに入っていれば、「♭」か「♯」に変換する
 function replace_mark(note) {
   if (check_sharp(note)) {
-  return note.replace(/#/, "♯");
+    note = note.replace(/#/, "♯");
   } else if (check_flat(note)) {
-  return note.replace(/b/, "♭");
-  } else {
-  return note;
+    note = note.replace(/b/, "♭");
   }
+  return note;
 }
 
 function position_of(note) {
