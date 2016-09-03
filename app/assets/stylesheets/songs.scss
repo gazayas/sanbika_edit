@@ -68,6 +68,14 @@ body { /* application.css にすること */
   margin: 0px auto;
 }
 
+p {
+  line-height: normal;
+}
+
+#body {
+  font-size: 16px;
+}
+
 #song_wrapper {
   text-align: center;
   margin: 0px auto;
