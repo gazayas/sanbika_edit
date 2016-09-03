@@ -3,13 +3,13 @@ song_params = [
     title: '賛美しよう',
     title_yomikata: 'さんびしよう',
     key: 'C',
-    body: '<em>C   Am   F   Cb</em><br/>賛美歌の歌詞はここに入ります'
+    body: '*C*   *Am*   *F*   *Cb*<br/>賛美歌の歌詞はここに入ります'
   ],
   [
     title: '愛である',
     title_yomikata: 'あいである',
     key: 'C',
-    body: '<em>C   Am   F   Cb</em><br/>賛美歌の歌詞はここに入ります'
+    body: '*C*   *Am*   *F*   *Cb*<br/>賛美歌の歌詞はここに入ります'
   ]
 ]
 
